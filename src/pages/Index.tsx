@@ -120,7 +120,7 @@ const Index = () => {
               className="relative w-[320px] h-[480px] md:w-[350px] md:h-[520px] bg-zinc-950 rounded-[48px] p-4 shadow-2xl border-4 border-zinc-800"
             >
               {/* Inner screen simulation */}
-              <div className="relative w-full h-full rounded-[38px] overflow-hidden bg-gradient-to-b from-[#E52321] to-red-950 p-6 flex flex-col justify-between text-center">
+              <div className="relative w-full h-full rounded-[38px] overflow-hidden bg-gradient-to-b from-[#E52321] to-red-950 p-6 pb-24 flex flex-col justify-between text-center">
                 <div className="space-y-2">
                   <span className="text-xs tracking-[0.2em] font-extrabold uppercase bg-white/10 text-white px-3 py-1 rounded-full">
                     SABOR ORIGINAL
@@ -137,16 +137,17 @@ const Index = () => {
                   </h4>
                 </div>
 
-                <div className="text-white/80 text-xs">
+                {/* Elevated Slogan Text with Shadow protection */}
+                <div className="text-white font-extrabold tracking-widest text-xs z-10 bg-black/30 backdrop-blur-[2px] py-1.5 px-3 rounded-full mx-auto shadow-sm">
                   #SABEMOSDEPIZZAS
                 </div>
               </div>
 
               {/* Pizza floating overlay at bottom */}
-              <div className="absolute -bottom-8 -left-6 w-36 h-36 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl">
+              <div className="absolute -bottom-8 -left-6 w-36 h-36 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl z-0">
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300" className="w-full h-full object-cover" alt="muzzarella" />
               </div>
-              <div className="absolute -bottom-10 -right-4 w-44 h-44 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl">
+              <div className="absolute -bottom-10 -right-4 w-44 h-44 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl z-0">
                 <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=300" className="w-full h-full object-cover" alt="pepperoni" />
               </div>
             </motion.div>
