@@ -1,10 +1,6 @@
+"use client";
+
 import React, { useState } from 'react';
-import { useCart } from '../hooks/use-cart';
-import { PizzaItem } from '../types/pizza';
-import { PizzaCard } from '../components/PizzaCard';
-import { CartDrawer } from '../components/CartDrawer';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, MapPin, Phone, Instagram, Facebook } from 'lucide-react';
 import { useCart } from '../hooks/use-cart';
 import { PizzaItem } from '../types/pizza';
 import { PizzaCard } from '../components/PizzaCard';
