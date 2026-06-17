@@ -5,8 +5,9 @@ import { useCart } from '../hooks/use-cart';
 import { PizzaItem } from '../types/pizza';
 import { PizzaCard } from '../components/PizzaCard';
 import { CartDrawer } from '../components/CartDrawer';
+import { TominoLogo } from '../components/TominoLogo';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, MapPin, Phone, Instagram, Facebook } from 'lucide-react';
+import { ShoppingCart, MapPin, Phone, Instagram, Facebook, Gift, MessageCircle, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { MadeWithDyad } from '@/components/made-with-dyad';
 
@@ -82,76 +83,168 @@ const Index = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#FFFDF5]">
-      {/* Header / Hero */}
-      <header className="relative h-[70vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+    <div className="min-h-screen bg-[#121212] text-[#FDFBF7] selection:bg-[#E52321] selection:text-white overflow-x-hidden">
+      
+      {/* Promo Ticker Bar */}
+      <div className="bg-[#E52321] text-white py-2 px-4 text-center text-xs md:text-sm font-black uppercase tracking-widest relative z-50 shadow-md">
+        <span className="inline-flex items-center gap-2 animate-pulse">
+          🔥 TERRIBLE PROMO !! LLEVANDO DOS PIZZAS TE LLEVÁS MEDIA GRATIS !!!! 🍕
+        </span>
+      </div>
+
+      {/* Navigation / Header Brand Logo */}
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 z-40">
+        <TominoLogo size="md" />
+      </div>
+
+      {/* Hero Poster Layout matching Image Design */}
+      <header className="relative min-h-[90vh] flex items-center justify-center pt-24 overflow-hidden bg-radial-gradient">
+        {/* Background Overlay */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/80 to-[#121212]/40 z-10" />
           <img 
             src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1600&auto=format&fit=crop" 
-            className="w-full h-full object-cover brightness-50"
+            className="w-full h-full object-cover brightness-[0.25]"
             alt="Pizzeria Tomino Background"
           />
         </div>
-        <div className="relative z-10 text-center text-white px-4">
-          <motion.h1 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-6xl md:text-8xl font-black mb-4 drop-shadow-2xl italic"
-          >
-            Pizzeria Tomino
-          </motion.h1>
-          <p className="text-xl md:text-2xl font-light tracking-widest uppercase mb-8 drop-shadow-lg">
-            Tradición y sabor en cada porción
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-transform hover:scale-105"
+
+        {/* Content Wrapper */}
+        <div className="relative z-10 container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-12">
+          
+          {/* Left Side: Mock Phone Poster Frame */}
+          <div className="col-span-1 lg:col-span-5 flex justify-center order-2 lg:order-1">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="relative w-[320px] h-[480px] md:w-[350px] md:h-[520px] bg-zinc-950 rounded-[48px] p-4 shadow-2xl border-4 border-zinc-800"
             >
-              Ver Menú
-            </button>
+              {/* Inner screen simulation */}
+              <div className="relative w-full h-full rounded-[38px] overflow-hidden bg-gradient-to-b from-[#E52321] to-red-950 p-6 flex flex-col justify-between text-center">
+                <div className="space-y-2">
+                  <span className="text-xs tracking-[0.2em] font-extrabold uppercase bg-white/10 text-white px-3 py-1 rounded-full">
+                    SABOR ORIGINAL
+                  </span>
+                  <h3 className="text-3xl font-black uppercase text-white leading-tight tracking-tight pt-4">
+                    APROVECHA<br/>LA PROMO
+                  </h3>
+                </div>
+
+                {/* Splat Text Graphic "WOW!" */}
+                <div className="my-auto transform -rotate-6">
+                  <h4 className="text-6xl md:text-7xl font-black tracking-tighter text-white uppercase italic stroke-white" style={{ textShadow: '4px 4px 0px #121212' }}>
+                    ¡WOW!
+                  </h4>
+                </div>
+
+                <div className="text-white/80 text-xs">
+                  #SABEMOSDEPIZZAS
+                </div>
+              </div>
+
+              {/* Pizza floating overlay at bottom */}
+              <div className="absolute -bottom-8 -left-6 w-36 h-36 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300" className="w-full h-full object-cover" alt="muzzarella" />
+              </div>
+              <div className="absolute -bottom-10 -right-4 w-44 h-44 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=300" className="w-full h-full object-cover" alt="pepperoni" />
+              </div>
+            </motion.div>
           </div>
+
+          {/* Right Side: Heavy Bold Slogans & Action */}
+          <div className="col-span-1 lg:col-span-7 space-y-6 text-center lg:text-left order-1 lg:order-2">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-4"
+            >
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase text-white leading-[0.95] flex flex-col">
+                <span>UNA PROMO</span>
+                <span className="text-[#E52321] italic">DE LOCURA</span>
+              </h1>
+              
+              <div className="inline-block bg-[#E52321] text-white font-black text-xl md:text-2xl px-6 py-3 rounded-2xl transform -rotate-2 shadow-lg tracking-tight">
+                LLEVANDO 2 PIZZAS TE REGALAMOS MEDIA!
+              </div>
+
+              <p className="text-lg text-zinc-300 max-w-xl font-medium leading-relaxed pt-2">
+                Disfrutá del verdadero sabor de la pizza artesanal. Hacé tu pedido online y recibilo directamente en tu puerta.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
+            >
+              <button 
+                onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-[#E52321] hover:bg-red-700 text-white px-8 py-5 rounded-2xl font-black text-lg tracking-wider uppercase transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl shadow-red-600/20"
+              >
+                Hacer mi Pedido
+              </button>
+              
+              <a 
+                href="https://wa.me/5492364583291"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-zinc-800 hover:bg-zinc-700 text-white px-8 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-2 transition-all"
+              >
+                <Phone size={20} className="text-[#E52321]" />
+                WhatsApp: 2364 58 3291
+              </a>
+            </motion.div>
+          </div>
+
         </div>
       </header>
 
-      {/* Stats / Info */}
-      <section className="bg-white py-12 border-b">
+      {/* Contact & Brand Info Section */}
+      <section className="bg-[#181818] py-16 border-y border-zinc-800/80">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="flex flex-col items-center">
-            <MapPin className="text-orange-500 mb-2" size={32} />
-            <h3 className="font-bold">Ubicación</h3>
-            <p className="text-gray-500">Av. Siempre Viva 123, CABA</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <Phone className="text-orange-500 mb-2" size={32} />
-            <h3 className="font-bold">Llamanos</h3>
-            <p className="text-gray-500">011 1234-5678</p>
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="flex gap-4">
-              <Instagram className="text-orange-500 cursor-pointer" />
-              <Facebook className="text-orange-500 cursor-pointer" />
+          <div className="flex flex-col items-center space-y-3">
+            <div className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800 text-[#E52321]">
+              <MapPin size={28} />
             </div>
-            <h3 className="font-bold mt-2">Seguinos</h3>
-            <p className="text-gray-500">@pizzeriatomino</p>
+            <h3 className="font-extrabold text-lg uppercase tracking-wider text-white">Ubicación</h3>
+            <p className="text-zinc-400">Av. San Martín 459, Junín</p>
+          </div>
+          <div className="flex flex-col items-center space-y-3">
+            <div className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800 text-[#E52321]">
+              <Phone size={28} />
+            </div>
+            <h3 className="font-extrabold text-lg uppercase tracking-wider text-white">Llamanos / WhatsApp</h3>
+            <p className="text-zinc-400 font-bold">2364 58 3291</p>
+          </div>
+          <div className="flex flex-col items-center space-y-3">
+            <div className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800 text-[#E52321]">
+              <Instagram size={28} />
+            </div>
+            <h3 className="font-extrabold text-lg uppercase tracking-wider text-white">Seguinos</h3>
+            <p className="text-zinc-400">@pizzeriatomino</p>
           </div>
         </div>
       </section>
 
       {/* Menu Section */}
-      <main id="menu" className="container mx-auto px-4 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">Nuestro Menú</h2>
-          <div className="h-1.5 w-24 bg-orange-500 mx-auto rounded-full"></div>
+      <main id="menu" className="container mx-auto px-4 py-24">
+        <div className="text-center mb-16 space-y-2">
+          <span className="text-xs tracking-[0.3em] font-extrabold uppercase text-[#E52321]">NUESTRO MENÚ</span>
+          <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">PIZZAS EN SERIO</h2>
+          <div className="h-1.5 w-20 bg-[#E52321] mx-auto rounded-full"></div>
         </div>
 
         <Tabs defaultValue="Clásicas" className="w-full">
-          <TabsList className="flex justify-center mb-12 bg-transparent gap-2 h-auto flex-wrap">
+          <TabsList className="flex justify-center mb-16 bg-zinc-900/60 p-2 rounded-2xl border border-zinc-800 gap-2 h-auto flex-wrap max-w-lg mx-auto">
             {["Clásicas", "Especiales", "Bebidas"].map((cat) => (
               <TabsTrigger 
                 key={cat} 
                 value={cat}
-                className="px-8 py-3 rounded-full border-2 border-orange-100 data-[state=active]:bg-orange-500 data-[state=active]:text-white data-[state=active]:border-orange-500 transition-all font-bold"
+                className="px-6 py-3 rounded-xl border-0 data-[state=active]:bg-[#E52321] data-[state=active]:text-white transition-all font-black uppercase text-xs tracking-wider"
               >
                 {cat}
               </TabsTrigger>
@@ -170,17 +263,61 @@ const Index = () => {
         </Tabs>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-black italic mb-4">Pizzeria Tomino</h2>
-          <p className="text-gray-400 mb-8 max-w-md mx-auto">
-            Hacemos pizzas con amor, ingredientes frescos y ese toque artesanal que nos distingue.
-          </p>
-          <div className="flex justify-center gap-8 mb-12">
-            <Instagram className="hover:text-orange-500 cursor-pointer transition-colors" />
-            <Facebook className="hover:text-orange-500 cursor-pointer transition-colors" />
+      {/* Promotional Callout Section */}
+      <section className="bg-gradient-to-r from-red-950 via-[#E52321]/30 to-red-950 py-20 border-t border-zinc-800/80">
+        <div className="container mx-auto px-4 text-center space-y-6 max-w-3xl">
+          <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-xs font-extrabold text-white tracking-widest uppercase">
+            <Star size={14} className="text-amber-400 fill-amber-400" /> PROMO DE APERTURA <Star size={14} className="text-amber-400 fill-amber-400" />
           </div>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white uppercase">
+            LLEVÁS 2 PIZZAS, TE REGALAMOS <span className="text-[#E52321]">MEDIA MÁS!</span>
+          </h2>
+          <p className="text-lg text-zinc-300 leading-relaxed font-medium">
+            ¡Sí, leíste bien! Llevando cualquiera de nuestras pizzas (Clásicas o Especiales), te regalamos media pizza a tu elección totalmente gratis para acompañar tu pedido.
+          </p>
+          <div className="pt-4">
+            <button 
+              onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-[#E52321] hover:bg-red-700 text-white font-black uppercase tracking-wider text-sm px-8 py-4 rounded-xl transition-all"
+            >
+              ¡Aprovechar Promo Ahora!
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-zinc-950 text-zinc-400 py-16 border-t border-zinc-900">
+        <div className="container mx-auto px-4 text-center space-y-8">
+          <div className="flex justify-center">
+            <div className="w-[84px] h-[84px] bg-white rounded-full border-2 border-white flex flex-col items-center justify-center p-1.5 shadow-lg transform -rotate-6">
+              <span className="text-[7px] text-zinc-800 font-bold tracking-widest uppercase">DESDE 1960</span>
+              <h1 className="text-[20px] font-black tracking-tight leading-none text-zinc-950 italic transform skew-x-3 -skew-y-2">
+                TOMINO
+              </h1>
+              <div className="w-12 h-[2px] bg-[#E52321] my-0.5"></div>
+              <span className="text-[5.5px] text-white font-semibold tracking-wider uppercase bg-[#E52321] px-1 rounded-sm">
+                PIZZAS EN SERIO
+              </span>
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <p className="text-white font-extrabold uppercase tracking-widest">#SABEMOSDEPIZZAS</p>
+            <p className="text-sm max-w-md mx-auto text-zinc-500">
+              Tradición familiar elaborada con el mejor horno de piedra, salsa secreta de la casa e ingredientes frescos locales.
+            </p>
+          </div>
+
+          <div className="flex justify-center gap-6">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-[#E52321] transition-colors"><Instagram size={20} /></a>
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-[#E52321] transition-colors"><Facebook size={20} /></a>
+          </div>
+
+          <div className="border-t border-zinc-900 pt-8 text-xs text-zinc-600">
+            &copy; {new Date().getFullYear()} Pizzería Tomino. Todos los derechos reservados.
+          </div>
+          
           <MadeWithDyad />
         </div>
       </footer>
@@ -191,10 +328,10 @@ const Index = () => {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           onClick={() => setIsCartOpen(true)}
-          className="fixed bottom-8 right-8 bg-orange-600 text-white p-6 rounded-full shadow-2xl flex items-center gap-3 z-50 hover:bg-orange-700 transition-colors"
+          className="fixed bottom-8 right-8 bg-[#E52321] text-white p-5 rounded-full shadow-2xl flex items-center gap-3 z-50 hover:bg-red-700 transition-colors"
         >
           <ShoppingCart size={24} />
-          <span className="font-bold text-lg">{itemCount} items - ${total}</span>
+          <span className="font-extrabold text-base tracking-tight">{itemCount} - ${total}</span>
         </motion.button>
       )}
 
