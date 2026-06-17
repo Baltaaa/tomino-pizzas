@@ -318,7 +318,15 @@ const Index = () => {
               &copy; {new Date().getFullYear()} Pizzería Tomino. Todos los derechos reservados.
             </div>
             <div className="text-[11px] text-zinc-600 mt-2">
-              Desarrollado a medida por <span className="text-zinc-400 font-bold hover:text-[#E52321] transition-colors">Baltasar Bruschetti</span>
+              Desarrollado a medida por{" "}
+              <a 
+                href="https://www.instagram.com/baltabruschetti/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-zinc-400 font-bold hover:text-[#E52321] transition-colors"
+              >
+                Baltasar Bruschetti
+              </a>
             </div>
           </div>
         </div>
