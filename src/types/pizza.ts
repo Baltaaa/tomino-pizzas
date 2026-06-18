@@ -3,7 +3,7 @@ export interface PizzaItem {
   name: string;
   description: string;
   price: number;
-  category: "Clásicas" | "Especiales" | "Bebidas";
+  category: "Clásicas" | "Especiales" | "Bebidas" | "Promos";
   image: string;
 }
 

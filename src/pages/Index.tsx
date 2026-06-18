@@ -11,6 +11,32 @@ import { ShoppingCart, MapPin, Phone, Instagram, Facebook, Gift, Star, Search, C
 import { motion } from 'framer-motion';
 
 const MENU_ITEMS: PizzaItem[] = [
+  // --- PROMOS ---
+  {
+    id: 'p1',
+    name: 'Combo Amigos',
+    description: '2 Pizzas Muzzarella Clásicas + 1 Coca-Cola Sabor Original 1.5L helada. ¡La cena ideal resuelta!',
+    price: 18500,
+    category: 'Promos',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p2',
+    name: 'La de la Casa',
+    description: '1 Especial Tomino (nuestra obra de arte) + 1 Cerveza Quilmes Clásica de Litro en punto nieve.',
+    price: 15500,
+    category: 'Promos',
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p3',
+    name: 'Promo Mundial',
+    description: '2 Fugazzas con Queso doradas al oliva + 1 Cerveza Imperial Especial de Litro bien helada.',
+    price: 20000,
+    category: 'Promos',
+    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?w=800&auto=format&fit=crop'
+  },
+
   // --- CLÁSICAS ---
   {
     id: '1',
@@ -393,7 +419,7 @@ const Index = () => {
         <div className="max-w-md mx-auto mb-12 relative">
           <input
             type="text"
-            placeholder="Buscar por sabor, ingrediente, vino, etc..."
+            placeholder="Buscar por sabor, ingrediente, vino, combo..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-zinc-900 border border-zinc-800 text-white rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-[#E52321] focus:ring-1 focus:ring-[#E52321] transition-all"
@@ -401,9 +427,9 @@ const Index = () => {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
         </div>
 
-        <Tabs defaultValue="Clásicas" className="w-full">
+        <Tabs defaultValue="Promos" className="w-full">
           <TabsList className="flex justify-center mb-16 bg-zinc-900/60 p-2 rounded-2xl border border-zinc-800 gap-2 h-auto flex-wrap max-w-xl mx-auto">
-            {["Clásicas", "Especiales", "Bebidas"].map((cat) => (
+            {["Promos", "Clásicas", "Especiales", "Bebidas"].map((cat) => (
               <TabsTrigger 
                 key={cat} 
                 value={cat}
@@ -414,12 +440,12 @@ const Index = () => {
             ))}
           </TabsList>
 
-          {["Clásicas", "Especiales", "Bebidas"].map((cat) => (
+          {["Promos", "Clásicas", "Especiales", "Bebidas"].map((cat) => (
             <TabsContent key={cat} value={cat}>
               {filteredMenuItems.filter(item => item.category === cat).length === 0 ? (
                 <div className="text-center text-zinc-500 py-12">
                   <p className="text-lg font-bold">No se encontraron productos en esta categoría</p>
-                  <p className="text-sm mt-1">Intentá buscando otro sabor.</p>
+                  <p className="text-sm mt-1">Intentá buscando otro sabor o combo.</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
