@@ -7,7 +7,7 @@ import { PizzaCard } from '../components/PizzaCard';
 import { CartDrawer } from '../components/CartDrawer';
 import { TominoLogo } from '../components/TominoLogo';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, MapPin, Phone, Instagram, Facebook, Gift, Star, Search } from 'lucide-react';
+import { ShoppingCart, MapPin, Phone, Instagram, Facebook, Gift, Star, Search, Clock, ShieldCheck, GlassWater } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const MENU_ITEMS: PizzaItem[] = [
@@ -15,7 +15,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '1',
     name: 'Muzzarella Clásica',
-    description: 'Salsa de tomate artesanal, muzzarella premium de exportación, aceitunas verdes y un toque de orégano.',
+    description: 'Salsa de tomate artesanal secreta, muzzarella de exportación gratinada, aceitunas verdes mendocinas y orégano puro.',
     price: 8500,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
@@ -23,7 +23,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '2',
     name: 'Fugazza con Queso',
-    description: 'Abundante muzzarella, cebolla blanca cortada en pluma tiernizada, aceite de oliva virgen extra y aceitunas.',
+    description: 'Abundante muzzarella, cebolla dulce cortada en pluma tiernizada al oliva, parmesano rallado y aceitunas negras.',
     price: 8900,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?w=800&auto=format&fit=crop'
@@ -31,7 +31,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '3',
     name: 'Napolitana',
-    description: 'Muzzarella fundida, rodajas de tomate fresco seleccionado, ajo picado, albahaca fresca y aceitunas negras.',
+    description: 'Colchón de muzzarella fundida, rodajas de tomate fresco seleccionado, ajo picado, albahaca fresca y aceite de oliva.',
     price: 9200,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=800&auto=format&fit=crop'
@@ -39,7 +39,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '4',
     name: 'Jamón y Morrón',
-    description: 'Salsa de tomate, muzzarella premium, jamón cocido seleccionado en fetas y tiritas de morrón asado casero.',
+    description: 'Salsa de tomate casera, muzzarella, jamón cocido seleccionado en fetas y tiras de morrón asado de la casa.',
     price: 9800,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&auto=format&fit=crop'
@@ -47,7 +47,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '5',
     name: 'Calabresa',
-    description: 'Salsa de tomate, muzzarella, rodajas de auténtico salame tipo calabrés, especias y aceitunas verdes.',
+    description: 'Salsa de tomate, muzzarella premium, rodajas de cantimpalo / calabresa artesanal, especias y aceitunas.',
     price: 9900,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&auto=format&fit=crop'
@@ -55,7 +55,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '6',
     name: 'Fugazzeta Rellena',
-    description: 'Doble masa artesanal rellena de jamón cocido y abundante muzzarella, cubierta con cebolla dorada y parmesano.',
+    description: 'Doble masa artesanal rellena de jamón cocido y muzzarella fundente, cubierta con cebollas doradas y parmesano.',
     price: 12500,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
@@ -65,7 +65,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '7',
     name: 'Rúcula y Jamón Crudo',
-    description: 'Muzzarella, jamón crudo premium estacionado, rúcula selvática fresca y lluvia de lascas de queso parmesano.',
+    description: 'Muzzarella, jamón crudo premium estacionado de la zona, rúcula selvática fresca y lluvia de lascas de parmesano.',
     price: 12500,
     category: 'Especiales',
     image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=800&auto=format&fit=crop'
@@ -73,7 +73,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '8',
     name: 'Cuatro Quesos',
-    description: 'Una perfecta combinación de muzzarella, provolone gratinado, queso azul premium y parmesano rallado.',
+    description: 'Una sutil y potente combinación de muzzarella, provolone gratinado, queso azul premium y parmesano rallado.',
     price: 12000,
     category: 'Especiales',
     image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?w=800&auto=format&fit=crop'
@@ -81,7 +81,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '9',
     name: 'Provolone Premium',
-    description: 'Salsa de tomate, colchón de muzzarella, abundante queso provolone gratinado al horno de piedra y aceitunas.',
+    description: 'Salsa de tomate, colchón de muzzarella, abundante queso provolone gratinado al horno de piedra, oliva y especias.',
     price: 11500,
     category: 'Especiales',
     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
@@ -89,7 +89,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '10',
     name: 'Roquefort y Apio',
-    description: 'Muzzarella fundida, abundante queso azul desgranado, apio crocante picado e hilos de aceite de oliva.',
+    description: 'Muzzarella fundida, abundante queso azul de selección desgranado, apio crocante picado fino e hilos de oliva.',
     price: 11800,
     category: 'Especiales',
     image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=800&auto=format&fit=crop'
@@ -97,7 +97,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '11',
     name: 'Palmitos Especial',
-    description: 'Muzzarella, jamón cocido artesanal, palmitos cortados en rodajas finas y una suave salsa golf casera.',
+    description: 'Muzzarella, jamón cocido artesanal, palmitos seleccionados enteros en rodajas finas y salsa golf casera premium.',
     price: 12200,
     category: 'Especiales',
     image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?w=800&auto=format&fit=crop'
@@ -105,25 +105,25 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '12',
     name: 'Especial Tomino',
-    description: 'La especialidad de la casa: Muzzarella, jamón, huevo duro picado, morrones, aceitunas negras y orégano.',
+    description: 'Nuestra obra de arte: Muzzarella, jamón cocido, huevo duro desgranado, tiras de morrón asado, aceitunas negras y orégano.',
     price: 13000,
     category: 'Especiales',
     image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?w=800&auto=format&fit=crop'
   },
 
-  // --- BEBIDAS ---
+  // --- BEBIDAS (Gaseosas, Cervezas, Vinos) ---
   {
     id: '13',
-    name: 'Coca Cola 1.5L',
-    description: 'Gaseosa Coca-Cola original bien helada, tamaño familiar.',
+    name: 'Coca-Cola Sabor Original 1.5L',
+    description: 'Gaseosa original de 1.5 litros en envase retornable/no descartable bien helada.',
     price: 3500,
     category: 'Bebidas',
     image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&auto=format&fit=crop'
   },
   {
     id: '14',
-    name: 'Sprite 1.5L',
-    description: 'Gaseosa sabor lima-limón helada, ideal para acompañar tus pizzas.',
+    name: 'Sprite Lima-Limón 1.5L',
+    description: 'Refrescante sabor lima-limón helado, ideal para acompañar tus pizzas.',
     price: 3500,
     category: 'Bebidas',
     image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&auto=format&fit=crop'
@@ -131,7 +131,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '15',
     name: 'Cerveza Quilmes Clásica 1L',
-    description: 'Cerveza tradicional argentina de litro, servida a temperatura ideal bajo cero.',
+    description: 'Cerveza tradicional de litro en envase de vidrio, servida bajo cero en punto nieve.',
     price: 4000,
     category: 'Bebidas',
     image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&auto=format&fit=crop'
@@ -139,10 +139,50 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '16',
     name: 'Cerveza Imperial Especial 1L',
-    description: 'Cerveza lager premium de litro, ideal para maridar con pizzas especiales.',
+    description: 'Cerveza Premium Lager nacional de litro para el maridaje ideal con pizzas especiales.',
     price: 4500,
     category: 'Bebidas',
     image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '17',
+    name: 'Vino Rutini Malbec 750ml',
+    description: 'Prestigioso vino de Bodega Rutini, ideal para acompañar una deliciosa pizza Especial Tomino o Provolone.',
+    price: 18500,
+    category: 'Bebidas',
+    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '18',
+    name: 'Vino Álamos Malbec 750ml',
+    description: 'Exquisito vino tinto mendocino de Bodega Catena Zapata, equilibrado y con gran personalidad.',
+    price: 9500,
+    category: 'Bebidas',
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '19',
+    name: 'Vino Trapiche Alaris Malbec 750ml',
+    description: 'Clásico vino joven, frutado y ligero, perfecto para disfrutar con pizzas clásicas.',
+    price: 5900,
+    category: 'Bebidas',
+    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '20',
+    name: 'Vino Estancia Mendoza Cabernet 750ml',
+    description: 'Cabernet Sauvignon de excelente estructura, notas especiadas, grato aroma y final robusto.',
+    price: 5200,
+    category: 'Bebidas',
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '21',
+    name: 'Agua Mineral sin Gas 500ml',
+    description: 'Agua mineral natural helada purificada de vertiente para acompañar tu menú.',
+    price: 1800,
+    category: 'Bebidas',
+    image: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&auto=format&fit=crop'
   }
 ];
 
@@ -247,7 +287,7 @@ const Index = () => {
               </div>
 
               <p className="text-lg text-zinc-300 max-w-xl font-medium leading-relaxed pt-2">
-                Disfrutá del verdadero sabor de la pizza artesanal. Hacé tu pedido online y recibilo directamente en tu puerta.
+                Disfrutá del verdadero sabor de la pizza artesanal de Junín. Hacé tu pedido online para delivery o retirá directo de nuestro local de Av. San Martín.
               </p>
             </motion.div>
 
@@ -314,6 +354,33 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Quality Promises / Delivery Info */}
+      <section className="py-12 bg-zinc-900/30">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex items-center gap-4 bg-[#1e1e1e]/60 p-5 rounded-2xl border border-white/5">
+            <Clock className="text-[#E52321] shrink-0" size={28} />
+            <div>
+              <h4 className="font-black text-sm uppercase text-white tracking-wide">Entrega Rápida</h4>
+              <p className="text-xs text-zinc-400 mt-1">Tu pedido calentito, directo del horno a tu mesa en tiempo récord.</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 bg-[#1e1e1e]/60 p-5 rounded-2xl border border-white/5">
+            <ShieldCheck className="text-[#E52321] shrink-0" size={28} />
+            <div>
+              <h4 className="font-black text-sm uppercase text-white tracking-wide">Delivery Junín</h4>
+              <p className="text-xs text-zinc-400 mt-1">Costo de envío plano de $1500 a cualquier parte de la ciudad de Junín.</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4 bg-[#1e1e1e]/60 p-5 rounded-2xl border border-white/5">
+            <GlassWater className="text-[#E52321] shrink-0" size={28} />
+            <div>
+              <h4 className="font-black text-sm uppercase text-white tracking-wide">Vinos y Bebidas</h4>
+              <p className="text-xs text-zinc-400 mt-1">Bodegas premium y gaseosas en envase familiar bien frías para acompañar.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Menu Section */}
       <main id="menu" className="container mx-auto px-4 py-24">
         <div className="text-center mb-10 space-y-2">
@@ -326,7 +393,7 @@ const Index = () => {
         <div className="max-w-md mx-auto mb-12 relative">
           <input
             type="text"
-            placeholder="Buscar por sabor o ingrediente..."
+            placeholder="Buscar por sabor, ingrediente, vino, etc..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-zinc-900 border border-zinc-800 text-white rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-[#E52321] focus:ring-1 focus:ring-[#E52321] transition-all"
@@ -335,14 +402,14 @@ const Index = () => {
         </div>
 
         <Tabs defaultValue="Clásicas" className="w-full">
-          <TabsList className="flex justify-center mb-16 bg-zinc-900/60 p-2 rounded-2xl border border-zinc-800 gap-2 h-auto flex-wrap max-w-lg mx-auto">
+          <TabsList className="flex justify-center mb-16 bg-zinc-900/60 p-2 rounded-2xl border border-zinc-800 gap-2 h-auto flex-wrap max-w-xl mx-auto">
             {["Clásicas", "Especiales", "Bebidas"].map((cat) => (
               <TabsTrigger 
                 key={cat} 
                 value={cat}
                 className="px-6 py-3 rounded-xl border-0 data-[state=active]:bg-[#E52321] data-[state=active]:text-white transition-all font-black uppercase text-xs tracking-wider"
               >
-                {cat}
+                {cat === 'Bebidas' ? 'Bebidas y Vinos' : cat}
               </TabsTrigger>
             ))}
           </TabsList>
