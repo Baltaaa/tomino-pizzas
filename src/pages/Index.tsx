@@ -18,7 +18,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: '2 Pizzas Muzzarella Clásicas + 1 Coca-Cola Sabor Original 1.5L helada. ¡La cena ideal resuelta!',
     price: 18500,
     category: 'Promos',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'p2',
@@ -26,7 +26,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: '1 Especial Tomino (nuestra obra de arte) + 1 Cerveza Quilmes Clásica de Litro en punto nieve.',
     price: 15500,
     category: 'Promos',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'p3',
@@ -34,7 +34,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: '2 Fugazzas con Queso doradas al oliva + 1 Cerveza Imperial Especial de Litro bien helada.',
     price: 20000,
     category: 'Promos',
-    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?q=80&w=800&auto=format&fit=crop'
   },
 
   // --- CLÁSICAS ---
@@ -44,7 +44,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Salsa de tomate artesanal secreta, muzzarella de exportación gratinada, aceitunas verdes mendocinas y orégano puro.',
     price: 8500,
     category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '2',
@@ -52,7 +52,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Abundante muzzarella, cebolla dulce cortada en pluma tiernizada al oliva, parmesano rallado y aceitunas negras.',
     price: 8900,
     category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '3',
@@ -60,7 +60,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Colchón de muzzarella fundida, rodajas de tomate fresco seleccionado, ajo picado, albahaca fresca y aceite de oliva.',
     price: 9200,
     category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '4',
@@ -68,7 +68,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Salsa de tomate casera, muzzarella, jamón cocido seleccionado en fetas y tiras de morrón asado de la casa.',
     price: 9800,
     category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '5',
@@ -76,7 +76,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Salsa de tomate, muzzarella premium, rodajas de cantimpalo / calabresa artesanal, especias y aceitunas.',
     price: 9900,
     category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '6',
@@ -84,7 +84,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Doble masa artesanal rellena de jamón cocido y muzzarella fundente, cubierta con cebollas doradas y parmesano.',
     price: 12500,
     category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1594009487141-692398a5e985?q=80&w=800&auto=format&fit=crop'
   },
 
   // --- ESPECIALES ---
@@ -94,7 +94,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Muzzarella, jamón crudo premium estacionado de la zona, rúcula selvática fresca y lluvia de lascas de parmesano.',
     price: 12500,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '8',
@@ -102,7 +102,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Una sutil y potente combinación de muzzarella, provolone gratinado, queso azul premium y parmesano rallado.',
     price: 12000,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1573821663912-569905455b1c?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '9',
@@ -110,7 +110,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Salsa de tomate, colchón de muzzarella, abundante queso provolone gratinado al horno de piedra, oliva y especias.',
     price: 11500,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '10',
@@ -118,7 +118,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Muzzarella fundida, abundante queso azul de selección desgranado, apio crocante picado fino e hilos de oliva.',
     price: 11800,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '11',
@@ -126,7 +126,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Muzzarella, jamón cocido artesanal, palmitos seleccionados enteros en rodajas finas y salsa golf casera premium.',
     price: 12200,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '12',
@@ -134,7 +134,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Nuestra obra de arte: Muzzarella, jamón cocido, huevo duro desgranado, tiras de morrón asado, aceitunas negras y orégano.',
     price: 13000,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?q=80&w=800&auto=format&fit=crop'
   },
 
   // --- BEBIDAS (Gaseosas, Cervezas, Vinos) ---
@@ -144,7 +144,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Gaseosa original de 1.5 litros en envase retornable/no descartable bien helada.',
     price: 3500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '14',
@@ -152,7 +152,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Refrescante sabor lima-limón helado, ideal para acompañar tus pizzas.',
     price: 3500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '15',
@@ -160,7 +160,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Cerveza tradicional de litro en envase de vidrio, servida bajo cero en punto nieve.',
     price: 4000,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '16',
@@ -168,7 +168,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Cerveza Premium Lager nacional de litro para el maridaje ideal con pizzas especiales.',
     price: 4500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '17',
@@ -176,7 +176,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Prestigioso vino de Bodega Rutini, ideal para acompañar una deliciosa pizza Especial Tomino o Provolone.',
     price: 18500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '18',
@@ -184,7 +184,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Exquisito vino tinto mendocino de Bodega Catena Zapata, equilibrado y con gran personalidad.',
     price: 9500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '19',
@@ -192,7 +192,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Clásico vino joven, frutado y ligero, perfecto para disfrutar con pizzas clásicas.',
     price: 5900,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '20',
@@ -200,7 +200,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Cabernet Sauvignon de excelente estructura, notas especiadas, grato aroma y final robusto.',
     price: 5200,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '21',
@@ -208,7 +208,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Agua mineral natural helada purificada de vertiente para acompañar tu menú.',
     price: 1800,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1608885898957-a599fb18ec3f?q=80&w=800&auto=format&fit=crop'
   }
 ];
 
