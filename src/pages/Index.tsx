@@ -7,71 +7,140 @@ import { PizzaCard } from '../components/PizzaCard';
 import { CartDrawer } from '../components/CartDrawer';
 import { TominoLogo } from '../components/TominoLogo';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, MapPin, Phone, Instagram, Facebook, Gift, Star } from 'lucide-react';
+import { ShoppingCart, MapPin, Phone, Instagram, Facebook, Gift, Star, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const MENU_ITEMS: PizzaItem[] = [
+  // --- CLÁSICAS ---
   {
     id: '1',
     name: 'Muzzarella Clásica',
-    description: 'Salsa de tomate casera, muzzarella premium, aceitunas y orégano.',
+    description: 'Salsa de tomate artesanal, muzzarella premium de exportación, aceitunas verdes y un toque de orégano.',
     price: 8500,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
   },
   {
     id: '2',
-    name: 'Napolitana',
-    description: 'Muzzarella, rodajas de tomate natural, ajo y albahaca fresca.',
-    price: 9200,
-    category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=800&auto=format&fit=crop'
-  },
-  {
-    id: '3',
-    name: 'Fugazzeta',
-    description: 'Base de muzzarella cubierta con cebolla blanca en pluma y especias.',
+    name: 'Fugazza con Queso',
+    description: 'Abundante muzzarella, cebolla blanca cortada en pluma tiernizada, aceite de oliva virgen extra y aceitunas.',
     price: 8900,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?w=800&auto=format&fit=crop'
   },
   {
+    id: '3',
+    name: 'Napolitana',
+    description: 'Muzzarella fundida, rodajas de tomate fresco seleccionado, ajo picado, albahaca fresca y aceitunas negras.',
+    price: 9200,
+    category: 'Clásicas',
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=800&auto=format&fit=crop'
+  },
+  {
     id: '4',
-    name: 'Pepperoni Especial',
-    description: 'Doble porción de pepperoni americano sobre un colchón de muzzarella.',
-    price: 11500,
-    category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&auto=format&fit=crop'
+    name: 'Jamón y Morrón',
+    description: 'Salsa de tomate, muzzarella premium, jamón cocido seleccionado en fetas y tiritas de morrón asado casero.',
+    price: 9800,
+    category: 'Clásicas',
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800&auto=format&fit=crop'
   },
   {
     id: '5',
-    name: 'Cuatro Quesos',
-    description: 'Muzzarella, parmesano, provolone y un toque de queso azul.',
-    price: 12000,
-    category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?w=800&auto=format&fit=crop'
+    name: 'Calabresa',
+    description: 'Salsa de tomate, muzzarella, rodajas de auténtico salame tipo calabrés, especias y aceitunas verdes.',
+    price: 9900,
+    category: 'Clásicas',
+    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&auto=format&fit=crop'
   },
   {
     id: '6',
-    name: 'Rúcula y Crudo',
-    description: 'Muzzarella, jamón crudo premium, rúcula fresca y lluvia de parmesano.',
+    name: 'Fugazzeta Rellena',
+    description: 'Doble masa artesanal rellena de jamón cocido y abundante muzzarella, cubierta con cebolla dorada y parmesano.',
+    price: 12500,
+    category: 'Clásicas',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
+  },
+
+  // --- ESPECIALES ---
+  {
+    id: '7',
+    name: 'Rúcula y Jamón Crudo',
+    description: 'Muzzarella, jamón crudo premium estacionado, rúcula selvática fresca y lluvia de lascas de queso parmesano.',
     price: 12500,
     category: 'Especiales',
     image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=800&auto=format&fit=crop'
   },
   {
-    id: '7',
+    id: '8',
+    name: 'Cuatro Quesos',
+    description: 'Una perfecta combinación de muzzarella, provolone gratinado, queso azul premium y parmesano rallado.',
+    price: 12000,
+    category: 'Especiales',
+    image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '9',
+    name: 'Provolone Premium',
+    description: 'Salsa de tomate, colchón de muzzarella, abundante queso provolone gratinado al horno de piedra y aceitunas.',
+    price: 11500,
+    category: 'Especiales',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '10',
+    name: 'Roquefort y Apio',
+    description: 'Muzzarella fundida, abundante queso azul desgranado, apio crocante picado e hilos de aceite de oliva.',
+    price: 11800,
+    category: 'Especiales',
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '11',
+    name: 'Palmitos Especial',
+    description: 'Muzzarella, jamón cocido artesanal, palmitos cortados en rodajas finas y una suave salsa golf casera.',
+    price: 12200,
+    category: 'Especiales',
+    image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '12',
+    name: 'Especial Tomino',
+    description: 'La especialidad de la casa: Muzzarella, jamón, huevo duro picado, morrones, aceitunas negras y orégano.',
+    price: 13000,
+    category: 'Especiales',
+    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?w=800&auto=format&fit=crop'
+  },
+
+  // --- BEBIDAS ---
+  {
+    id: '13',
     name: 'Coca Cola 1.5L',
-    description: 'Bebida gaseosa refrescante.',
+    description: 'Gaseosa Coca-Cola original bien helada, tamaño familiar.',
     price: 3500,
     category: 'Bebidas',
     image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&auto=format&fit=crop'
   },
   {
-    id: '8',
-    name: 'Cerveza Artesanal IPA',
-    description: 'Lata 473ml de nuestra mejor selección local.',
-    price: 4200,
+    id: '14',
+    name: 'Sprite 1.5L',
+    description: 'Gaseosa sabor lima-limón helada, ideal para acompañar tus pizzas.',
+    price: 3500,
+    category: 'Bebidas',
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '15',
+    name: 'Cerveza Quilmes Clásica 1L',
+    description: 'Cerveza tradicional argentina de litro, servida a temperatura ideal bajo cero.',
+    price: 4000,
+    category: 'Bebidas',
+    image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&auto=format&fit=crop'
+  },
+  {
+    id: '16',
+    name: 'Cerveza Imperial Especial 1L',
+    description: 'Cerveza lager premium de litro, ideal para maridar con pizzas especiales.',
+    price: 4500,
     category: 'Bebidas',
     image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=800&auto=format&fit=crop'
   }
@@ -80,6 +149,13 @@ const MENU_ITEMS: PizzaItem[] = [
 const Index = () => {
   const { cart, addToCart, updateQuantity, total, itemCount } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filtrado dinámico por buscador
+  const filteredMenuItems = MENU_ITEMS.filter(item => 
+    item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    item.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="min-h-screen bg-[#121212] text-[#FDFBF7] selection:bg-[#E52321] selection:text-white overflow-x-hidden">
@@ -240,10 +316,22 @@ const Index = () => {
 
       {/* Menu Section */}
       <main id="menu" className="container mx-auto px-4 py-24">
-        <div className="text-center mb-16 space-y-2">
+        <div className="text-center mb-10 space-y-2">
           <span className="text-xs tracking-[0.3em] font-extrabold uppercase text-[#E52321]">NUESTRO MENÚ</span>
           <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tight">PIZZAS EN SERIO</h2>
           <div className="h-1.5 w-20 bg-[#E52321] mx-auto rounded-full"></div>
+        </div>
+
+        {/* Buscador de pizzas interactivo */}
+        <div className="max-w-md mx-auto mb-12 relative">
+          <input
+            type="text"
+            placeholder="Buscar por sabor o ingrediente..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-zinc-900 border border-zinc-800 text-white rounded-2xl py-4 pl-12 pr-4 text-sm focus:outline-none focus:border-[#E52321] focus:ring-1 focus:ring-[#E52321] transition-all"
+          />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
         </div>
 
         <Tabs defaultValue="Clásicas" className="w-full">
@@ -261,11 +349,18 @@ const Index = () => {
 
           {["Clásicas", "Especiales", "Bebidas"].map((cat) => (
             <TabsContent key={cat} value={cat}>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {MENU_ITEMS.filter(item => item.category === cat).map((item) => (
-                  <PizzaCard key={item.id} item={item} onAdd={addToCart} />
-                ))}
-              </div>
+              {filteredMenuItems.filter(item => item.category === cat).length === 0 ? (
+                <div className="text-center text-zinc-500 py-12">
+                  <p className="text-lg font-bold">No se encontraron productos en esta categoría</p>
+                  <p className="text-sm mt-1">Intentá buscando otro sabor.</p>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                  {filteredMenuItems.filter(item => item.category === cat).map((item) => (
+                    <PizzaCard key={item.id} item={item} onAdd={addToCart} />
+                  ))}
+                </div>
+              )}
             </TabsContent>
           ))}
         </Tabs>
