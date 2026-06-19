@@ -290,7 +290,7 @@ const Index = () => {
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200" className="w-full h-full object-cover" alt="muzzarella" />
               </div>
               <div className="absolute -bottom-8 -right-2 w-32 h-32 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl z-0">
-                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200" className="w-full h-full object-cover" alt="pepperoni" />
+                <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=200" className="w-full h-full object-cover" alt="pepperoni" />
               </div>
             </motion.div>
           </div>
@@ -329,24 +329,6 @@ const Index = () => {
               >
                 Hacer mi Pedido
               </button>
-              
-              <a 
-                href="https://wa.me/5492364583291"
-                target="_blank"
-                rel="noreferrer"
-                className="bg-zinc-800 hover:bg-zinc-700 text-white px-6 py-4 rounded-xl md:rounded-2xl font-bold text-sm sm:text-lg flex items-center justify-center gap-2.5 transition-all"
-              >
-                <svg
-                  className="text-[#E52321] fill-current"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.83.001-2.624-1.013-5.091-2.861-6.942-1.848-1.85-4.307-2.87-6.931-2.87-5.438 0-9.863 4.414-9.866 9.832-.001 1.782.463 3.52 1.34 5.068l-.988 3.607 3.692-.968zm11.391-7.713c-.29-.146-1.714-.847-1.98-.942-.265-.096-.459-.146-.653.146-.194.292-.751.943-.919 1.134-.168.19-.336.213-.626.068-.29-.146-1.225-.452-2.333-1.441-.863-.77-1.446-1.72-1.616-2.012-.17-.291-.018-.448.127-.592.131-.13.291-.339.436-.509.145-.17.194-.291.291-.485.097-.194.048-.364-.025-.51-.072-.146-.653-1.574-.894-2.157-.235-.567-.474-.49-.653-.499-.17-.008-.364-.01-.557-.01-.194 0-.509.073-.775.364-.266.292-1.016.993-1.016 2.423s1.04 2.812 1.185 3.007c.145.194 2.046 3.125 4.957 4.382.693.3 1.233.479 1.654.613.697.221 1.33.19 1.83.115.558-.083 1.714-.7 1.956-1.374.242-.674.242-1.251.17-1.374-.074-.124-.267-.197-.558-.343z" />
-                </svg>
-                WhatsApp
-              </a>
             </motion.div>
           </div>
 
@@ -448,7 +430,7 @@ const Index = () => {
                   <p className="text-sm mt-1">Intentá buscando otro sabor o combo.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
                   {filteredMenuItems.filter(item => item.category === cat).map((item) => {
                     const cartItem = cart.find(c => c.id === item.id);
                     const quantity = cartItem ? cartItem.quantity : 0;
