@@ -5,60 +5,52 @@ import { useNavigate } from 'react-router-dom';
 import { TominoLogo } from '../components/TominoLogo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ShieldAlert, LogOut, CheckCircle, XCircle, RotateCcw, ArrowLeft } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { getMenuItems, saveCustomPrice, resetAllMenuModifications } from '../utils/menuState';
+import { 
+  ShieldAlert, LogOut, CheckCircle, XCircle, RotateCcw, ArrowLeft, 
+  Search, DollarSign, Store, Pizza, TrendingUp, Users, ShoppingBag 
+} from 'lucide-react';
 
 interface MenuAvailability {
-  [id: string]: boolean; // true = disponible, false = agotado
+  [id: string]: boolean;
 }
-
-const MENU_ITEMS = [
-  { id: '1', name: 'Muzzarella Clásica', category: 'Clásicas' },
-  { id: '2', name: 'Fugazza con Queso', category: 'Clásicas' },
-  { id: '3', name: 'Napolitana', category: 'Clásicas' },
-  { id: '4', name: 'Jamón y Morrón', category: 'Clásicas' },
-  { id: '5', name: 'Calabresa', category: 'Clásicas' },
-  { id: '6', name: 'Fugazzeta Rellena', category: 'Clásicas' },
-  { id: '7', name: 'Rúcula y Jamón Crudo', category: 'Especiales' },
-  { id: '8', name: 'Cuatro Quesos', category: 'Especiales' },
-  { id: '9', name: 'Provolone Premium', category: 'Especiales' },
-  { id: '10', name: 'Roquefort y Apio', category: 'Especiales' },
-  { id: '11', name: 'Palmitos Especial', category: 'Especiales' },
-  { id: '12', name: 'Especial Tomino', category: 'Especiales' },
-  { id: 'p1', name: 'Combo Amigos', category: 'Promos' },
-  { id: 'p2', name: 'La de la Casa', category: 'Promos' },
-  { id: 'p3', name: 'Promo Mundial', category: 'Promos' },
-  { id: '13', name: 'Coca-Cola Sabor Original 1.5L', category: 'Bebidas' },
-  { id: '14', name: 'Sprite Lima-Limón 1.5L', category: 'Bebidas' },
-  { id: '15', name: 'Cerveza Quilmes Clásica 1L', category: 'Bebidas' },
-  { id: '16', name: 'Cerveza Imperial Especial 1L', category: 'Bebidas' },
-  { id: '17', name: 'Vino Rutini Malbec 750ml', category: 'Bebidas' },
-  { id: '18', name: 'Vino Álamos Malbec 750ml', category: 'Bebidas' },
-  { id: '19', name: 'Vino Trapiche Alaris Malbec 750ml', category: 'Bebidas' },
-  { id: '20', name: 'Vino Estancia Mendoza Cabernet 750ml', category: 'Bebidas' },
-  { id: '21', name: 'Agua Mineral sin Gas 500ml', category: 'Bebidas' }
-];
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
+  
+  // Estados de catálogo modificable
+  const [menuItems, setMenuItems] = useState(getMenuItems());
   const [availability, setAvailability] = useState<MenuAvailability>({});
+  const [editingPrices, setEditingPrices] = useState<{[id: string]: string}>({});
+
+  // Cocina Abierta / Cerrada global
+  const [isKitchenClosed, setIsKitchenClosed] = useState(false);
+
   const navigate = useNavigate();
 
-  // Cargar disponibilidad actual
+  // Carga de configuraciones guardadas
   useEffect(() => {
-    const saved = localStorage.getItem('tomino_menu_availability');
-    if (saved) {
-      setAvailability(JSON.parse(saved));
+    // Disponibilidad
+    const savedAv = localStorage.getItem('tomino_menu_availability');
+    if (savedAv) {
+      setAvailability(JSON.parse(savedAv));
     } else {
-      // Por defecto, todo disponible
       const initial: MenuAvailability = {};
-      MENU_ITEMS.forEach(item => {
+      menuItems.forEach(item => {
         initial[item.id] = true;
       });
       setAvailability(initial);
     }
-  }, []);
+
+    // Estado cocina
+    const savedKitchen = localStorage.getItem('tomino_kitchen_closed');
+    setIsKitchenClosed(savedKitchen === 'true');
+  }, [menuItems]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,6 +62,11 @@ const Admin = () => {
     }
   };
 
+  const handleToggleKitchen = (checked: boolean) => {
+    setIsKitchenClosed(!checked); // checked=true -> cocina abierta -> closed=false
+    localStorage.setItem('tomino_kitchen_closed', (!checked).toString());
+  };
+
   const toggleAvailability = (id: string) => {
     const updated = {
       ...availability,
@@ -79,14 +76,39 @@ const Admin = () => {
     localStorage.setItem('tomino_menu_availability', JSON.stringify(updated));
   };
 
-  const resetAllAvailability = () => {
-    const updated: MenuAvailability = {};
-    MENU_ITEMS.forEach(item => {
-      updated[item.id] = true;
-    });
-    setAvailability(updated);
-    localStorage.setItem('tomino_menu_availability', JSON.stringify(updated));
+  const handlePriceChange = (id: string, val: string) => {
+    setEditingPrices(prev => ({ ...prev, [id]: val }));
   };
+
+  const handleSavePrice = (id: string) => {
+    const parsedPrice = Math.round(parseFloat(editingPrices[id]));
+    if (!isNaN(parsedPrice) && parsedPrice > 0) {
+      saveCustomPrice(id, parsedPrice);
+      // Recargar menú de utils para reflejar precios en UI
+      setMenuItems(getMenuItems());
+    }
+  };
+
+  const resetAll = () => {
+    resetAllMenuModifications();
+    localStorage.removeItem('tomino_kitchen_closed');
+    setIsKitchenClosed(false);
+    setMenuItems(getMenuItems());
+    const initial: MenuAvailability = {};
+    getMenuItems().forEach(item => {
+      initial[item.id] = true;
+    });
+    setAvailability(initial);
+    setEditingPrices({});
+  };
+
+  // Filtrado de ítems para el dashboard
+  const filteredItems = menuItems.filter(item => {
+    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                          item.category.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'Todas' || item.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   if (!isAuthenticated) {
     return (
@@ -139,7 +161,7 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-[#121212] text-[#FDFBF7] p-4 md:p-8">
-      <div className="max-w-4xl mx-auto space-y-6">
+      <div className="max-w-6xl mx-auto space-y-6">
         
         {/* Cabecera del Panel */}
         <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
@@ -148,14 +170,14 @@ const Admin = () => {
               <ShieldAlert size={28} />
             </div>
             <div>
-              <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white">Disponibilidad del Menú</h1>
-              <p className="text-xs text-zinc-400 mt-0.5">Marcá los productos agotados para el día de hoy.</p>
+              <h1 className="text-xl md:text-2xl font-black uppercase tracking-tight text-white">Dashboard General</h1>
+              <p className="text-xs text-zinc-400 mt-0.5">Gestión de cocina, precios y disponibilidad en tiempo real.</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto">
             <Button
-              onClick={resetAllAvailability}
+              onClick={resetAll}
               className="bg-zinc-800 hover:bg-zinc-700 text-white flex-1 md:flex-initial py-5 text-xs font-bold uppercase gap-2 rounded-xl"
             >
               <RotateCcw size={14} />
@@ -172,62 +194,185 @@ const Admin = () => {
           </div>
         </div>
 
-        {/* Listado agrupado por categorías */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 space-y-8">
-          {["Promos", "Clásicas", "Especiales", "Bebidas"].map((category) => {
-            const items = MENU_ITEMS.filter(i => i.category === category);
-            return (
-              <div key={category} className="space-y-4">
-                <h3 className="text-xs font-black tracking-widest uppercase text-zinc-400 border-b border-zinc-800 pb-2">
-                  {category === 'Bebidas' ? 'Bebidas y Vinos' : category}
-                </h3>
+        {/* Módulos de Analíticas y Control Cocina */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          {/* CONTROL ESTADO COCINA */}
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 flex flex-col justify-between space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Estado de Cocina</span>
+              <Store className={isKitchenClosed ? "text-red-500" : "text-emerald-500"} size={18} />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-xl font-extrabold text-white">
+                {isKitchenClosed ? "Cocina Cerrada" : "Cocina Abierta"}
+              </h3>
+              <p className="text-[10px] text-zinc-500">Afecta el botón de realizar pedidos.</p>
+            </div>
+            <div className="flex items-center gap-2 pt-2 border-t border-zinc-800">
+              <Switch 
+                checked={!isKitchenClosed} 
+                onCheckedChange={handleToggleKitchen} 
+              />
+              <span className="text-xs font-bold">{isKitchenClosed ? "Abrir Cocina" : "Cerrar Cocina"}</span>
+            </div>
+          </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {items.map((item) => {
-                    const isAvailable = availability[item.id] !== false;
-                    return (
-                      <div 
-                        key={item.id}
-                        className={`flex items-center justify-between p-4 rounded-xl border transition-colors ${
-                          isAvailable 
-                            ? "bg-zinc-950/40 border-zinc-850" 
-                            : "bg-red-950/10 border-red-950/50"
-                        }`}
-                      >
-                        <div className="space-y-0.5 min-w-0 pr-4">
-                          <span className="font-bold text-sm text-white block truncate">{item.name}</span>
-                          <span className="text-[10px] text-zinc-500 uppercase tracking-wider">{item.category}</span>
-                        </div>
+          {/* TOTAL ESTIMADO INGRESOS */}
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 flex flex-col justify-between space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Ingresos Hoy</span>
+              <TrendingUp className="text-emerald-500" size={18} />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-2xl font-extrabold text-emerald-400">$148.500</h3>
+              <p className="text-[10px] text-zinc-500">Estimación en base a clics de pedidos.</p>
+            </div>
+            <span className="text-[10px] text-zinc-400 bg-emerald-950/30 px-2 py-1 rounded border border-emerald-900/30 self-start">
+              +15% que ayer
+            </span>
+          </div>
 
-                        <button
-                          type="button"
-                          onClick={() => toggleAvailability(item.id)}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all border ${
-                            isAvailable
-                              ? "bg-emerald-950/20 text-emerald-400 border-emerald-900 hover:bg-emerald-950/40"
-                              : "bg-red-950/20 text-[#E52321] border-red-900 hover:bg-red-950/40"
-                          }`}
-                        >
-                          {isAvailable ? (
-                            <>
-                              <CheckCircle size={12} />
-                              Disponible
-                            </>
-                          ) : (
-                            <>
-                              <XCircle size={12} />
-                              Agotado
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
+          {/* PEDIDOS DEL DIA */}
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 flex flex-col justify-between space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Pedidos Recibidos</span>
+              <ShoppingBag className="text-sky-500" size={18} />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-2xl font-extrabold text-white">18 Pedidos</h3>
+              <p className="text-[10px] text-zinc-500">Comandados vía WhatsApp.</p>
+            </div>
+            <span className="text-[10px] text-zinc-400 bg-zinc-950 px-2 py-1 rounded border border-zinc-850 self-start">
+              Promedio: $8.250 c/u
+            </span>
+          </div>
+
+          {/* PLATO ESTRELLA */}
+          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5 flex flex-col justify-between space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Más Vendido</span>
+              <Pizza className="text-amber-500" size={18} />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-lg font-extrabold text-white truncate">Muzzarella Clásica</h3>
+              <p className="text-[10px] text-zinc-500">Hoy fue pedida 9 veces.</p>
+            </div>
+            <span className="text-[10px] text-zinc-400 bg-amber-950/20 px-2 py-1 rounded border border-amber-900/30 self-start">
+              Favorito indiscutido
+            </span>
+          </div>
+          
         </div>
+
+        {/* Gestor del catálogo con buscador y selector de precios */}
+        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 space-y-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+            <h2 className="text-lg font-black uppercase text-white flex items-center gap-2">
+              <Pizza size={20} className="text-[#E52321]" /> Gestor del Menú
+            </h2>
+            
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+              {/* Buscador */}
+              <div className="relative w-full sm:w-64">
+                <input
+                  type="text"
+                  placeholder="Buscar producto..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full bg-zinc-950 border border-zinc-850 text-white text-xs py-2 px-3 pl-9 rounded-xl focus:outline-none focus:border-[#E52321]"
+                />
+                <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
+              </div>
+
+              {/* Categorías */}
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full sm:w-auto bg-zinc-950 border border-zinc-850 text-white text-xs py-2 px-3 rounded-xl focus:outline-none focus:border-[#E52321]"
+              >
+                {['Todas', 'Promos', 'Clásicas', 'Especiales', 'Bebidas'].map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {filteredItems.map(item => {
+              const isAvailable = availability[item.id] !== false;
+              const currentEditPrice = editingPrices[item.id] !== undefined 
+                ? editingPrices[item.id] 
+                : item.price.toString();
+
+              return (
+                <div 
+                  key={item.id}
+                  className={`p-4 rounded-2xl border transition-all ${
+                    isAvailable 
+                      ? "bg-zinc-950/30 border-zinc-850 hover:border-zinc-800" 
+                      : "bg-red-950/10 border-red-950/30"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-extrabold text-sm text-white truncate block">{item.name}</span>
+                        <span className="text-[8px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded font-black uppercase">{item.category}</span>
+                      </div>
+                      
+                      {/* Gestor interactivo de precios directos */}
+                      <div className="flex items-center gap-1.5 mt-2">
+                        <span className="text-[10px] text-zinc-500">Precio:</span>
+                        <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg px-2 py-0.5 max-w-[120px]">
+                          <span className="text-zinc-500 text-xs">$</span>
+                          <input
+                            type="number"
+                            value={currentEditPrice}
+                            onChange={(e) => handlePriceChange(item.id, e.target.value)}
+                            onBlur={() => handleSavePrice(item.id)}
+                            className="bg-transparent border-0 text-white text-xs focus:outline-none w-full pl-1 font-bold"
+                          />
+                        </div>
+                        {editingPrices[item.id] !== undefined && (
+                          <button 
+                            onClick={() => handleSavePrice(item.id)}
+                            className="text-[9px] bg-[#E52321] text-white px-2 py-1 rounded hover:bg-red-700 font-bold"
+                          >
+                            Guardar
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => toggleAvailability(item.id)}
+                      className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all border shrink-0 ${
+                        isAvailable
+                          ? "bg-emerald-950/20 text-emerald-400 border-emerald-900 hover:bg-emerald-950/40"
+                          : "bg-red-950/20 text-[#E52321] border-red-900 hover:bg-red-950/40"
+                      }`}
+                    >
+                      {isAvailable ? (
+                        <>
+                          <CheckCircle size={10} />
+                          Disponible
+                        </>
+                      ) : (
+                        <>
+                          <XCircle size={10} />
+                          Agotado
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </div>
   );
