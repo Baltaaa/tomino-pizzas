@@ -73,21 +73,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#121212] text-[#FDFBF7] selection:bg-[#E52321] selection:text-white overflow-x-hidden">
-      
-      {/* Promo Ticker Bar */}
-      <div className="bg-[#E52321] text-white py-2 px-4 text-center text-xs md:text-sm font-black uppercase tracking-widest relative z-50 shadow-md">
-        <span className="inline-flex items-center gap-2 animate-pulse">
-          🔥 TERRIBLE PROMO !! LLEVANDO DOS PIZZAS TE LLEVÁS MEDIA GRATIS !!!! 🍕
-        </span>
-      </div>
 
       {/* Navigation / Header Brand Logo */}
       <div className="absolute top-4 md:top-8 left-1/2 -translate-x-1/2 z-40">
         <TominoLogo size="sm" className="scale-90 md:scale-100" />
       </div>
 
-      {/* Hero Poster Layout matching Image Design - Compact on Mobile */}
-      <header className="relative min-h-[70vh] md:min-h-[85vh] flex items-center justify-center pt-32 pb-12 md:pb-20 overflow-hidden bg-radial-gradient">
+      {/* Hero Poster Layout - Full height on Mobile */}
+      <header className="relative min-h-screen md:min-h-[85vh] flex items-center justify-center pt-32 pb-12 md:pb-20 overflow-hidden bg-radial-gradient">
         {/* Background Overlay */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-[#121212]/90 to-[#121212]/40 z-10" />
@@ -138,7 +131,7 @@ const Index = () => {
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200" className="w-full h-full object-cover" alt="muzzarella" />
               </div>
               <div className="absolute -bottom-8 -right-2 w-32 h-32 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl z-0">
-                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200" className="w-full h-full object-cover" alt="pepperoni" />
+                <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=200" className="w-full h-full object-cover" alt="pepperoni" />
               </div>
             </motion.div>
           </div>

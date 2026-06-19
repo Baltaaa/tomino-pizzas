@@ -83,24 +83,24 @@ export const PizzaCard = ({
             {item.name}
           </h3>
           
-          {/* Descripción interactiva para evitar que se corte en mobile */}
+          {/* Descripción: En desktop se muestra completa; en mobile se puede expandir al pulsarla */}
           <div 
             onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-            className="cursor-pointer mt-1 relative group/desc"
+            className="cursor-pointer sm:cursor-default mt-1 relative group/desc"
             title="Toca para expandir"
           >
             <p className={`text-zinc-400 text-[10px] sm:text-xs leading-tight transition-all duration-300 ${
-              isDescriptionExpanded ? "" : "line-clamp-2"
+              isDescriptionExpanded ? "" : "line-clamp-2 sm:line-clamp-none"
             }`}>
               {item.description}
             </p>
             {!isDescriptionExpanded && item.description.length > 45 && (
-              <span className="text-[8px] text-red-500 font-bold block mt-0.5 hover:underline flex items-center gap-0.5 select-none">
+              <span className="text-[8px] text-red-500 font-bold block sm:hidden mt-0.5 hover:underline flex items-center gap-0.5 select-none">
                 <Info size={10} /> Ver todo
               </span>
             )}
             {isDescriptionExpanded && (
-              <span className="text-[8px] text-zinc-500 font-bold block mt-0.5 select-none">
+              <span className="text-[8px] text-zinc-500 font-bold block sm:hidden mt-0.5 select-none">
                 Ver menos
               </span>
             )}
