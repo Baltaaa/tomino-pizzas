@@ -547,7 +547,7 @@ const Index = () => {
           onClick={() => setIsCartOpen(true)}
           className="fixed bottom-6 right-6 bg-[#E52321] text-white p-4 md:p-5 rounded-full shadow-2xl flex items-center gap-2.5 md:gap-3 z-50 hover:bg-red-700 transition-colors"
         >
-          <ShoppingCart size={20} md:size={24} />
+          <ShoppingCart size={22} />
           <span className="font-extrabold text-sm md:text-base tracking-tight">{itemCount} - ${total}</span>
         </motion.button>
       )}
