@@ -94,7 +94,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Muzzarella, jamón crudo premium estacionado de la zona, rúcula selvática fresca y lluvia de lascas de parmesano.',
     price: 12500,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '8',
@@ -102,7 +102,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Una sutil y potente combinación de muzzarella, provolone gratinado, queso azul premium y parmesano rallado.',
     price: 12000,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '9',
@@ -110,7 +110,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Salsa de tomate, colchón de muzzarella, abundante queso provolone gratinado al horno de piedra, oliva y especias.',
     price: 11500,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '10',
@@ -126,7 +126,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Muzzarella, jamón cocido artesanal, palmitos seleccionados enteros en rodajas finas y salsa golf casera premium.',
     price: 12200,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1511688855354-a16955dad62c?w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '12',
@@ -152,7 +152,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Refrescante sabor lima-limón helado, ideal para acompañar tus pizzas.',
     price: 3500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '15',
@@ -168,7 +168,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Cerveza Premium Lager nacional de litro para el maridaje ideal con pizzas especiales.',
     price: 4500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '17',
@@ -176,7 +176,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Prestigioso vino de Bodega Rutini, ideal para acompañar una deliciosa pizza Especial Tomino o Provolone.',
     price: 18500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '18',
@@ -192,7 +192,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Clásico vino joven, frutado y ligero, perfecto para disfrutar con pizzas clásicas.',
     price: 5900,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1528258342012-4275bd94e1d5?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '20',
@@ -200,7 +200,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Cabernet Sauvignon de excelente estructura, notas especiadas, grato aroma y final robusto.',
     price: 5200,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: '21',
@@ -208,7 +208,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Agua mineral natural helada purificada de vertiente para acompañar tu menú.',
     price: 1800,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1608885898957-a599fb18ec3f?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=800&auto=format&fit=crop'
   }
 ];
 
