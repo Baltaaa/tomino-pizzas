@@ -9,4 +9,6 @@ export interface PizzaItem {
 
 export interface CartItem extends PizzaItem {
   quantity: number;
+  size: "Entera" | "Media";
+  singlePrice: number; // Precio unitario real según tamaño elegido (entera o media)
 }

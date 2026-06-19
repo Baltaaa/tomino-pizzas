@@ -4,15 +4,28 @@ import { PizzaItem, CartItem } from '../types/pizza';
 export const useCart = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const addToCart = (product: PizzaItem) => {
+  const addToCart = (product: PizzaItem, size: "Entera" | "Media" = "Entera") => {
+    const singlePrice = size === "Media" ? Math.round(product.price / 2) : product.price;
+    const cartItemId = `${product.id}-${size}`;
+
     setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
+      const existing = prev.find((item) => item.id === cartItemId);
       if (existing) {
         return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === cartItemId ? { ...item, quantity: item.quantity + 1 } : item
         );
       }
-      return [...prev, { ...product, quantity: 1 }];
+      return [
+        ...prev,
+        {
+          ...product,
+          id: cartItemId, // identificador único compuesto para evitar colisiones
+          quantity: 1,
+          size,
+          singlePrice,
+          price: singlePrice // para retrocompatibilidad
+        },
+      ];
     });
   };
 
@@ -32,10 +45,10 @@ export const useCart = () => {
     );
   };
 
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const total = cart.reduce((acc, item) => acc + item.singlePrice * item.quantity, 0);
   const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   const clearCart = () => setCart([]);
 
-  return { cart, addToCart, removeFromCart, updateQuantity, total, itemCount, clearCart };
+  return { cart, addToCart, removeFromCart, updateQuantity, total, itemCount, clearCart, setCart };
 };

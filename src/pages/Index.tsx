@@ -1,14 +1,18 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../hooks/use-cart';
-import { PizzaItem } from '../types/pizza';
+import { PizzaItem, CartItem } from '../types/pizza';
 import { PizzaCard } from '../components/PizzaCard';
 import { CartDrawer } from '../components/CartDrawer';
 import { TominoLogo } from '../components/TominoLogo';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, MapPin, Phone, Instagram, Facebook, Star, Search, Clock, ShieldCheck, GlassWater } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { 
+  ShoppingCart, MapPin, Phone, Instagram, Facebook, Star, Search, Clock, 
+  ShieldCheck, GlassWater, RotateCcw, QrCode, X 
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { QRCodeSVG } from 'qrcode.react';
 
 const MENU_ITEMS: PizzaItem[] = [
   // --- PROMOS ---
@@ -137,7 +141,7 @@ const MENU_ITEMS: PizzaItem[] = [
     image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
   },
 
-  // --- BEBIDAS (Gaseosas, Cervezas, Vinos) ---
+  // --- BEBIDAS ---
   {
     id: '13',
     name: 'Coca-Cola Sabor Original 1.5L',
@@ -213,9 +217,47 @@ const MENU_ITEMS: PizzaItem[] = [
 ];
 
 const Index = () => {
-  const { cart, addToCart, updateQuantity, total, itemCount } = useCart();
+  const { cart, addToCart, updateQuantity, total, itemCount, setCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  
+  // Disponibilidad de productos (Admin localStorage)
+  const [availability, setAvailability] = useState<{[id: string]: boolean}>({});
+  
+  // Historial del último pedido
+  const [lastOrderCustomerName, setLastOrderCustomerName] = useState('');
+  const [hasSavedOrder, setHasSavedOrder] = useState(false);
+
+  // Modal QR del local
+  const [isQrOpen, setIsQrOpen] = useState(false);
+
+  // Carga de disponibilidad del panel de admin & Historial
+  useEffect(() => {
+    const savedAv = localStorage.getItem('tomino_menu_availability');
+    if (savedAv) {
+      setAvailability(JSON.parse(savedAv));
+    }
+
+    const savedName = localStorage.getItem('tomino_last_name');
+    const savedItems = localStorage.getItem('tomino_last_items');
+    if (savedName && savedItems) {
+      setLastOrderCustomerName(savedName);
+      setHasSavedOrder(true);
+    }
+  }, []);
+
+  const repeatLastOrder = () => {
+    const savedItems = localStorage.getItem('tomino_last_items');
+    if (savedItems) {
+      try {
+        const parsed: CartItem[] = JSON.parse(savedItems);
+        setCart(parsed);
+        setIsCartOpen(true);
+      } catch (e) {
+        console.error("Error al restaurar último pedido", e);
+      }
+    }
+  };
 
   // Filtrado dinámico por buscador
   const filteredMenuItems = MENU_ITEMS.filter(item => 
@@ -290,7 +332,7 @@ const Index = () => {
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200" className="w-full h-full object-cover" alt="muzzarella" />
               </div>
               <div className="absolute -bottom-8 -right-2 w-32 h-32 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl z-0">
-                <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=200" className="w-full h-full object-cover" alt="pepperoni" />
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200" className="w-full h-full object-cover" alt="pepperoni" />
               </div>
             </motion.div>
           </div>
@@ -335,6 +377,24 @@ const Index = () => {
         </div>
       </header>
 
+      {/* Historial de Re-compra rápida (Banner localStorage) */}
+      {hasSavedOrder && (
+        <section className="bg-zinc-950 py-4 border-b border-zinc-900">
+          <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <span className="text-xs sm:text-sm text-zinc-300 font-medium text-center">
+              👋 ¿Repetís lo de siempre, <strong className="text-[#E52321]">{lastOrderCustomerName}</strong>?
+            </span>
+            <Button
+              onClick={repeatLastOrder}
+              className="bg-[#E52321] hover:bg-red-700 text-white text-xs py-1.5 px-4 h-auto rounded-lg font-bold gap-1.5 flex items-center"
+            >
+              <RotateCcw size={12} />
+              Cargar último pedido
+            </Button>
+          </div>
+        </section>
+      )}
+
       {/* Contact & Brand Info Section - Compact Grid */}
       <section className="bg-[#181818] py-8 md:py-16 border-y border-zinc-800/80">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
@@ -357,7 +417,7 @@ const Index = () => {
               <Instagram size={22} />
             </div>
             <h3 className="font-extrabold text-sm md:text-lg uppercase tracking-wider text-white">Seguinos</h3>
-            <p className="text-xs md:text-sm text-zinc-400">@pizzeriatomino</p>
+            <p className="text-xs md:text-sm text-zinc-400 font-semibold">@pizzeriatomino</p>
           </div>
         </div>
       </section>
@@ -432,15 +492,25 @@ const Index = () => {
               ) : (
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
                   {filteredMenuItems.filter(item => item.category === cat).map((item) => {
-                    const cartItem = cart.find(c => c.id === item.id);
-                    const quantity = cartItem ? cartItem.quantity : 0;
+                    const isAgotado = availability[item.id] === false;
+                    
+                    // Buscar agregados en carrito
+                    const itemEntera = cart.find(c => c.id === `${item.id}-Entera`);
+                    const itemMedia = cart.find(c => c.id === `${item.id}-Media`);
+                    
+                    const qEntera = itemEntera ? itemEntera.quantity : 0;
+                    const qMedia = itemMedia ? itemMedia.quantity : 0;
+
                     return (
                       <PizzaCard 
                         key={item.id} 
                         item={item} 
-                        onAdd={addToCart} 
-                        quantity={quantity}
-                        onUpdateQty={(delta) => updateQuantity(item.id, delta)}
+                        onAdd={(prod, size) => addToCart(prod, size)} 
+                        quantityEntera={qEntera}
+                        quantityMedia={qMedia}
+                        onUpdateQtyEntera={(delta) => updateQuantity(`${item.id}-Entera`, delta)}
+                        onUpdateQtyMedia={(delta) => updateQuantity(`${item.id}-Media`, delta)}
+                        isAgotado={isAgotado}
                       />
                     );
                   })}
@@ -497,6 +567,21 @@ const Index = () => {
             </p>
           </div>
 
+          <div className="flex justify-center gap-4">
+            <Button
+              onClick={() => setIsQrOpen(true)}
+              className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white text-xs gap-1.5 rounded-lg py-4"
+            >
+              <QrCode size={14} /> Ver QR de la Pizza
+            </Button>
+            <a 
+              href="/admin"
+              className="inline-flex items-center justify-center bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white text-xs gap-1.5 rounded-lg px-4 py-2"
+            >
+              ⚙️ Acceso Admin
+            </a>
+          </div>
+
           <div className="flex justify-center gap-5 md:gap-6">
             <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-[#E52321] transition-colors"><Instagram size={18} /></a>
             <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-[#E52321] transition-colors"><Facebook size={18} /></a>
@@ -542,6 +627,38 @@ const Index = () => {
         onUpdateQty={updateQuantity}
         total={total}
       />
+
+      {/* QR Code Modal Dialog */}
+      <AnimatePresence>
+        {isQrOpen && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-zinc-900 border border-zinc-800 p-6 rounded-3xl max-w-sm w-full text-center space-y-4 relative"
+            >
+              <button
+                onClick={() => setIsQrOpen(false)}
+                className="absolute top-4 right-4 text-zinc-400 hover:text-white"
+              >
+                <X size={18} />
+              </button>
+
+              <h3 className="text-lg font-black uppercase text-white tracking-tight">QR Acceso Rápido</h3>
+              <p className="text-xs text-zinc-400">Escanealo con la cámara del celular para ver el menú digital en las mesas o el mostrador.</p>
+              
+              <div className="bg-white p-4 rounded-2xl inline-block shadow-xl">
+                <QRCodeSVG value={window.location.origin} size={200} marginSize={2} />
+              </div>
+
+              <div className="text-[10px] text-zinc-500 font-mono">
+                {window.location.origin}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
