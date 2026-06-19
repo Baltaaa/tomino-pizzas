@@ -6,6 +6,7 @@ import { PizzaItem, CartItem } from '../types/pizza';
 import { PizzaCard } from '../components/PizzaCard';
 import { CartDrawer } from '../components/CartDrawer';
 import { TominoLogo } from '../components/TominoLogo';
+import { Button } from "../components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   ShoppingCart, MapPin, Phone, Instagram, Facebook, Star, Search, Clock, 
@@ -45,7 +46,7 @@ const MENU_ITEMS: PizzaItem[] = [
   {
     id: '1',
     name: 'Muzzarella Clásica',
-    description: 'Salsa de tomate artesanal secreta, muzzarella de exportación gratinada, aceitunas verdes mendocinas y orégano puro.',
+    description: 'Salsa de tomate artesanal secreta, muzzarella de exportación gratinada, aceitunas verdes mendocinas and orégano puro.',
     price: 8500,
     category: 'Clásicas',
     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
@@ -332,7 +333,7 @@ const Index = () => {
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200" className="w-full h-full object-cover" alt="muzzarella" />
               </div>
               <div className="absolute -bottom-8 -right-2 w-32 h-32 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl z-0">
-                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200" className="w-full h-full object-cover" alt="pepperoni" />
+                <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=200" className="w-full h-full object-cover" alt="pepperoni" />
               </div>
             </motion.div>
           </div>
