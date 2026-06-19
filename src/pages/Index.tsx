@@ -52,7 +52,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Abundante muzzarella, cebolla dulce cortada en pluma tiernizada al oliva, parmesano rallado y aceitunas negras.',
     price: 8900,
     category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1571066811602-71683a3f680d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: '3',
@@ -84,7 +84,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Doble masa artesanal rellena de jamón cocido y muzzarella fundente, cubierta con cebollas doradas y parmesano.',
     price: 12500,
     category: 'Clásicas',
-    image: 'https://images.unsplash.com/photo-1593504049359-74330189a355?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1594007654729-407edd1a220a?auto=format&fit=crop&w=800&q=80'
   },
 
   // --- ESPECIALES ---
@@ -110,7 +110,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Salsa de tomate, colchón de muzzarella, abundante queso provolone gratinado al horno de piedra, oliva y especias.',
     price: 11500,
     category: 'Especiales',
-    image: 'https://images.unsplash.com/photo-1571066811602-71683a3f680d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: '10',
@@ -152,7 +152,7 @@ const MENU_ITEMS: PizzaItem[] = [
     description: 'Refrescante sabor lima-limón helado, ideal para acompañar tus pizzas.',
     price: 3500,
     category: 'Bebidas',
-    image: 'https://images.unsplash.com/photo-1625772291427-f14e5b66558b?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80'
   },
   {
     id: '15',
@@ -290,7 +290,7 @@ const Index = () => {
                 <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200" className="w-full h-full object-cover" alt="muzzarella" />
               </div>
               <div className="absolute -bottom-8 -right-2 w-32 h-32 rounded-full overflow-hidden border-4 border-[#121212] shadow-2xl z-0">
-                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=200" className="w-full h-full object-cover" alt="pepperoni" />
+                <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=200" className="w-full h-full object-cover" alt="pepperoni" />
               </div>
             </motion.div>
           </div>
