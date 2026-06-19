@@ -3,17 +3,17 @@
 import React from 'react';
 import { PizzaItem } from '../types/pizza';
 import { Button } from './ui/button';
-import { Plus } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Plus, Minus, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
   item: PizzaItem;
   onAdd: (item: PizzaItem) => void;
+  quantity?: number;
+  onUpdateQty?: (delta: number) => void;
 }
 
-export const PizzaCard = ({ item, onAdd }: Props) => {
-  const isDrink = item.category === 'Bebidas';
-
+export const PizzaCard = ({ item, onAdd, quantity = 0, onUpdateQty }: Props) => {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 15 }}
@@ -35,6 +35,11 @@ export const PizzaCard = ({ item, onAdd }: Props) => {
             Especial
           </div>
         )}
+        {item.category === 'Promos' && (
+          <div className="absolute top-4 left-4 bg-[#E52321] text-white px-3 py-0.5 rounded-full text-xs font-black tracking-widest uppercase animate-pulse">
+            Combo
+          </div>
+        )}
       </div>
       <div className="p-5 flex flex-col flex-1 justify-between">
         <div>
@@ -46,13 +51,52 @@ export const PizzaCard = ({ item, onAdd }: Props) => {
           </p>
         </div>
         
-        <Button 
-          onClick={() => onAdd(item)}
-          className="w-full bg-[#E52321] hover:bg-red-700 text-white rounded-xl py-6 flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-xs transition-transform duration-200 active:scale-95"
-        >
-          <Plus size={16} />
-          Agregar al pedido
-        </Button>
+        <div className="min-h-[48px]">
+          <AnimatePresence mode="wait">
+            {quantity > 0 ? (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="flex items-center justify-between bg-zinc-800 rounded-xl p-1 border border-zinc-700"
+              >
+                <Button
+                  onClick={() => onUpdateQty?.(-1)}
+                  size="icon"
+                  className="bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg h-10 w-10 transition-colors"
+                >
+                  <Minus size={14} />
+                </Button>
+                
+                <span className="font-extrabold text-sm text-white select-none">
+                  {quantity} agregados
+                </span>
+                
+                <Button
+                  onClick={() => onUpdateQty?.(1)}
+                  size="icon"
+                  className="bg-[#E52321] hover:bg-red-700 text-white rounded-lg h-10 w-10 transition-colors"
+                >
+                  <Plus size={14} />
+                </Button>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <Button 
+                  onClick={() => onAdd(item)}
+                  className="w-full bg-[#E52321] hover:bg-red-700 text-white rounded-xl py-6 flex items-center justify-center gap-2 font-bold uppercase tracking-wider text-xs transition-transform duration-200 active:scale-95"
+                >
+                  <Plus size={16} />
+                  Agregar al pedido
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </motion.div>
   );
