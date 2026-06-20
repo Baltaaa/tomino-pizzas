@@ -457,7 +457,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     name: 'Gloriosa',
     description: 'Salsa de tomate, mozzarella, jamón crudo, palmitos, huevo, morrones y salsa golf',
     price: 13200,
-    priceHalf: 6800,
+    priceHalf: 6805,
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
@@ -1157,70 +1157,4 @@ export const saveCustomPrice = (id: string, newPriceMain: number, newPriceHalf?:
 export const resetAllMenuModifications = () => {
   localStorage.removeItem('tomino_custom_prices');
   localStorage.removeItem('tomino_menu_availability');
-};
-</dyad-file>
-
-Modifiquemos la lógica del carrito en `src/hooks/use-cart.ts` para que entienda las variantes duales de precios de acuerdo con si tiene un `variantType` de `"pizza"` (Entera/Media) o `"drink"` (Grande/Chica), y que genere claves identificadoras compuestas robustas en el carrito para evitar colisiones:
-
-<dyad-write path="src/hooks/use-cart.ts" description="Actualización de la lógica del hook del carrito para discriminar precios de tamaño (Entera/Media y Grande/Chica).">
-import { useState } from 'react';
-import { PizzaItem, CartItem } from '../types/pizza';
-
-export const useCart = () => {
-  const [cart, setCart] = useState<CartItem[]>([]);
-
-  const addToCart = (product: PizzaItem, size: "Entera" | "Media" | "Chica" | "Grande" | "Única" = "Única") => {
-    // Determinar precio unitario real según variante
-    let singlePrice = product.price;
-    if (product.hasVariants && product.priceHalf !== undefined) {
-      if (size === "Media" || size === "Chica") {
-        singlePrice = product.priceHalf;
-      }
-    }
-
-    const cartItemId = `${product.id}-${size}`;
-
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === cartItemId);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === cartItemId ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [
-        ...prev,
-        {
-          ...product,
-          id: cartItemId, // identificador único compuesto
-          quantity: 1,
-          size,
-          singlePrice,
-          price: singlePrice // retrocompatibilidad
-        },
-      ];
-    });
-  };
-
-  const removeFromCart = (id: string) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const updateQuantity = (id: string, delta: number) => {
-    setCart((prev) =>
-      prev.map((item) => {
-        if (item.id === id) {
-          const newQty = Math.max(0, item.quantity + delta);
-          return { ...item, quantity: newQty };
-        }
-        return item;
-      }).filter(item => item.quantity > 0)
-    );
-  };
-
-  const total = cart.reduce((acc, item) => acc + item.singlePrice * item.quantity, 0);
-  const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-  const clearCart = () => setCart([]);
-
-  return { cart, addToCart, removeFromCart, updateQuantity, total, itemCount, clearCart, setCart };
 };
