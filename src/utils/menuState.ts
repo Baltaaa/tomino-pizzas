@@ -8,7 +8,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: '2 Pizzas Muzzarella Clásicas + 1 Coca-Cola Sabor Original 1.5L helada. ¡La cena ideal resuelta!',
     price: 18500,
     category: 'Promos',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'promo_la_de_la_casa',
@@ -16,7 +16,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: '1 Especial Tomino + 1 Cerveza Quilmes Clásica de Litro en punto nieve.',
     price: 15500,
     category: 'Promos',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
 
   // --- ENTRADAS (10 items) ---
@@ -26,7 +26,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Deliciosa porción de masa rellena con abundante queso mozzarella y cebollas caramelizadas doradas.',
     price: 3200,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1571066811602-71683a3f680d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'entradas_faina',
@@ -34,7 +34,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Porción clásica a base de harina de garbanzos, ideal para acompañar tu porción de pizza.',
     price: 1500,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=800'
   },
   {
     id: 'entradas_papas_fritas',
@@ -42,7 +42,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Porción de papas fritas clásicas, crujientes por fuera y tiernas por dentro.',
     price: 3800,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800'
   },
   {
     id: 'entradas_papas_con_cheddar',
@@ -50,7 +50,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Porción abundante de papas fritas bañadas en salsa cheddar fundida y crocante panceta picada.',
     price: 4900,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800'
   },
   {
     id: 'entradas_papas_con_crema',
@@ -58,7 +58,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Porción de papas con suave crema de leche aromatizada con cebollita de verdeo fresca y panceta grillada.',
     price: 5200,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1518013041235-0133b289486b?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800'
   },
   {
     id: 'entradas_papas_bravas',
@@ -66,7 +66,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Porción de papas doradas acompañadas de nuestra icónica salsa picante e infusión de especias.',
     price: 4200,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1585109649139-366815a0d713?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800'
   },
   {
     id: 'entradas_papas_mortal',
@@ -74,7 +74,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'La bomba de la casa: panceta crocante y huevos fritos servidos sobre una montaña de papas fritas.',
     price: 5800,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800'
   },
   {
     id: 'entradas_rabas',
@@ -82,7 +82,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Anillos de calamar tiernizados, rebozados y fritos a la perfección. Acompañados de gajos de limón.',
     price: 9500,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'entradas_cornalitos',
@@ -90,7 +90,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Porción crujiente de cornalitos fritos al limón, un clásico imperdible del mar.',
     price: 6500,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'entradas_tabla_de_mar',
@@ -98,7 +98,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Porción de rabas tiernas, cornalitos crujientes y papas fritas doradas. ¡Comen 4 pican todos!',
     price: 16000,
     category: 'entradas',
-    image: 'https://images.unsplash.com/photo-1534080391025-a87b9959410d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800'
   },
 
   // --- EMPANADAS (6 items) ---
@@ -108,7 +108,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Relleno jugoso de carne vacuna seleccionada con condimentos tradicionales criollos, 100% artesanal.',
     price: 1500,
     category: 'empanadas',
-    image: 'https://images.unsplash.com/photo-1557925916-43b3558c4fcc?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'empanada_jamon_queso',
@@ -116,7 +116,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Combinación perfecta de jamón cocido picado y queso mozzarella suave gratinado.',
     price: 1500,
     category: 'empanadas',
-    image: 'https://images.unsplash.com/photo-1557925916-43b3558c4fcc?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'empanada_capresse',
@@ -124,7 +124,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Deliciosa empanada rellena de mozzarella fundida, tomates secos cubeteados y albahaca fresca.',
     price: 1500,
     category: 'empanadas',
-    image: 'https://images.unsplash.com/photo-1557925916-43b3558c4fcc?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'empanada_cortada_cuchillo',
@@ -132,7 +132,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Receta casera premium con carne cortada pacientemente a mano, cebolla de verdeo y huevo.',
     price: 1700,
     category: 'empanadas',
-    image: 'https://images.unsplash.com/photo-1557925916-43b3558c4fcc?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'empanada_pollo',
@@ -140,7 +140,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Suprema de pollo desmenuzada, salteada con vegetales frescos y un toque de comino y morrón.',
     price: 1500,
     category: 'empanadas',
-    image: 'https://images.unsplash.com/photo-1557925916-43b3558c4fcc?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'empanada_roquefort',
@@ -148,7 +148,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Para los amantes del queso fuerte: intenso queso azul matizado con mozzarella y jamón fino.',
     price: 1600,
     category: 'empanadas',
-    image: 'https://images.unsplash.com/photo-1557925916-43b3558c4fcc?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
 
   // --- LA GIGANTE (7 items) ---
@@ -158,7 +158,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'La reina de la casa en sus variantes más queridas: Mozzarella, Especial, Napolitana o Mortal.',
     price: 16500,
     category: 'la_gigante',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'gigante_2_sabores',
@@ -166,7 +166,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Mitad y mitad clásica para compartir en familia. Combinación: Mozzarella y Especial.',
     price: 15900,
     category: 'la_gigante',
-    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'gigante_a_eleccion',
@@ -174,7 +174,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Diseñá tu gigante combinando los ingredientes que más te gusten a tu medida.',
     price: 18000,
     category: 'la_gigante',
-    image: 'https://images.unsplash.com/photo-1571066811602-71683a3f680d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'gigante_para_exigentes',
@@ -182,7 +182,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Sabores seleccionados: Ananá agridulce, Capresse aromática, Palmitos premium o cuatro quesos.',
     price: 19500,
     category: 'la_gigante',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'gigante_de_cancha',
@@ -190,7 +190,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Clásicos bien de barrio: Anchoas saladas, Calabresa, abundante Mozzarella o rodajas de tomate Napolitana.',
     price: 17200,
     category: 'la_gigante',
-    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'gigante_6_sabores',
@@ -198,7 +198,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'La de máxima variedad: Porciones de Mozzarella, Especial, Napolitana, Calabresa, Rúcula y Mortal.',
     price: 21500,
     category: 'la_gigante',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'gigante_tomino',
@@ -206,7 +206,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Nuestra combinación estelar: Americana con papas, Mortal con huevos fritos, Muzzarella y Cuatro Quesos.',
     price: 22000,
     category: 'la_gigante',
-    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
 
   // --- NUESTRAS PIZZAS (35 items con variante Entera/Media) ---
@@ -219,7 +219,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_morron',
@@ -230,7 +230,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_anchoas',
@@ -241,7 +241,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_anchoas_con_queso',
@@ -252,7 +252,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_jamon',
@@ -263,7 +263,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1571066811602-71683a3f680d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_especial',
@@ -274,7 +274,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_especial_completa',
@@ -285,7 +285,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_italiana',
@@ -296,7 +296,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_napolitana',
@@ -307,7 +307,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_napo_especial',
@@ -318,7 +318,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_atun',
@@ -329,7 +329,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_huevo',
@@ -340,7 +340,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_cebolla',
@@ -351,7 +351,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_provolone',
@@ -362,7 +362,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_calabresa',
@@ -373,7 +373,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_roquefort',
@@ -384,7 +384,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_palmitos',
@@ -395,7 +395,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_cuatro_quesos',
@@ -406,7 +406,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_anana',
@@ -417,7 +417,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_de_la_casa',
@@ -428,7 +428,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_capresse',
@@ -439,7 +439,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_cuatro_quesos_especial',
@@ -450,7 +450,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_gloriosa',
@@ -461,7 +461,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_sarmientista',
@@ -472,7 +472,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_mortal',
@@ -483,7 +483,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_salpicon',
@@ -494,7 +494,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_rucula',
@@ -505,7 +505,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_tomino',
@@ -516,7 +516,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_divorcio',
@@ -527,7 +527,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_vegetariana',
@@ -538,7 +538,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_pollo',
@@ -549,7 +549,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1557925916-43b3558c4fcc?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_especial_huevo',
@@ -560,7 +560,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=800'
   },
   {
     id: 'pizza_de_cancha',
@@ -571,7 +571,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_cebolla_especial',
@@ -582,7 +582,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
   {
     id: 'pizza_americana',
@@ -593,7 +593,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800'
   },
   {
     id: 'pizza_pelotero',
@@ -604,7 +604,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'pizzas',
     hasVariants: true,
     variantType: 'pizza',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800'
   },
 
   // --- POSTRES (9 items) ---
@@ -614,7 +614,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Tres deliciosos gustos de helado artesanal seleccionados.',
     price: 3200,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
   {
     id: 'postre_almendrado',
@@ -622,7 +622,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Clásica barra de helado de crema cubierto con crocantes almendras tostadas.',
     price: 3500,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
   {
     id: 'postre_nevado',
@@ -630,7 +630,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Helado de vainilla bañado en chocolate blanco y ralladura de coco.',
     price: 3500,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
   {
     id: 'postre_cucurucho',
@@ -638,7 +638,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Crocante cono de oblea con dos bochas gigantes de helado artesanal.',
     price: 2800,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
   {
     id: 'postre_bombon_suizo',
@@ -646,7 +646,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Helado de dulce de leche bañado en chocolate semiamargo crujiente.',
     price: 3600,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
   {
     id: 'postre_bombon_escoces',
@@ -654,7 +654,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Helado de crema americana con corazón de dulce de leche y baño de chocolate.',
     price: 3600,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
   {
     id: 'postre_tiramisu',
@@ -662,7 +662,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Bizcochuelo embebido en café expreso con crema de mascarpone y cacao.',
     price: 4500,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
   {
     id: 'postre_flan',
@@ -670,7 +670,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Exquisito flan casero de vainilla con un generoso copón de dulce de leche.',
     price: 3000,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
   {
     id: 'postre_frutillas',
@@ -678,7 +678,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     description: 'Frutillas frescas seleccionadas acompañadas de crema de leche batida artesanal.',
     price: 4000,
     category: 'postres',
-    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800'
   },
 
   // --- VINOS (13 items, divididos en subsecciones) ---
@@ -689,7 +689,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 6500,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_alma_malbec',
@@ -698,7 +698,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 7800,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_casa_agostino',
@@ -707,7 +707,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 9500,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_cosecha_nocturna',
@@ -716,7 +716,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 8500,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_otro_loco_mas',
@@ -725,7 +725,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 6000,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_dada',
@@ -734,7 +734,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 6800,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_luigi_bosca',
@@ -743,7 +743,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 14500,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_alma_mora',
@@ -752,7 +752,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 5800,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_de_la_casa',
@@ -761,7 +761,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 3500,
     category: 'vinos',
     subcategory: 'Tintos',
-    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_etchart',
@@ -770,7 +770,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4800,
     category: 'vinos',
     subcategory: 'Blancos',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_churita_torrontes',
@@ -779,7 +779,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 5500,
     category: 'vinos',
     subcategory: 'Blancos',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_blanco_dulce',
@@ -788,7 +788,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 5000,
     category: 'vinos',
     subcategory: 'Blancos',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
   {
     id: 'vino_moscato',
@@ -797,7 +797,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4500,
     category: 'vinos',
     subcategory: 'Blancos',
-    image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800'
   },
 
   // --- BEBIDAS CON ALCOHOL (22 items divididos en subsecciones) ---
@@ -808,7 +808,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 2500,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Artesanal Tirada',
-    image: 'https://images.unsplash.com/photo-1566633809597-43d522f964de?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1566633809597-43d522f964de?w=800'
   },
   {
     id: 'cerveza_2_pintas',
@@ -817,7 +817,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4500,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Artesanal Tirada',
-    image: 'https://images.unsplash.com/photo-1566633809597-43d522f964de?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1566633809597-43d522f964de?w=800'
   },
   {
     id: 'cerveza_1_jarra',
@@ -826,7 +826,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 5500,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Artesanal Tirada',
-    image: 'https://images.unsplash.com/photo-1566633809597-43d522f964de?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1566633809597-43d522f964de?w=800'
   },
   {
     id: 'cerveza_heineken_1l',
@@ -835,7 +835,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4500,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_imperial_1l',
@@ -844,7 +844,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 3800,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_imperial_roja_1l',
@@ -853,7 +853,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4000,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_imperial_negra_1l',
@@ -862,7 +862,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4000,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_imperial_apa_1l',
@@ -871,7 +871,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4200,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_imperial_ipa_1l',
@@ -880,7 +880,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4200,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_miller_1l',
@@ -889,7 +889,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4300,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_grolsch_1l',
@@ -898,7 +898,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4800,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_sol',
@@ -907,7 +907,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 3200,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_antares_500',
@@ -916,7 +916,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 3800,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_corona_710',
@@ -925,7 +925,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4900,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_lata_imperial_500',
@@ -934,7 +934,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 2000,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_lata_imperial_roja',
@@ -943,7 +943,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 2200,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_lata_imperial_negra',
@@ -952,7 +952,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 2200,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_lata_heineken',
@@ -961,7 +961,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 2500,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_lata_imperial_apa',
@@ -970,7 +970,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 2300,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'cerveza_lata_imperial_ipa',
@@ -979,7 +979,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 2300,
     category: 'cervezas_con_alcohol',
     subcategory: 'Cerveza Industrial',
-    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800'
   },
   {
     id: 'aperitivo_fernet',
@@ -988,7 +988,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 4500,
     category: 'cervezas_con_alcohol',
     subcategory: 'Aperitivos',
-    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800'
   },
   {
     id: 'aperitivo_gancia',
@@ -997,7 +997,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     price: 3800,
     category: 'cervezas_con_alcohol',
     subcategory: 'Aperitivos',
-    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800'
   },
 
   // --- BEBIDAS SIN ALCOHOL (11 items con variante Grande/Chica) ---
@@ -1010,7 +1010,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'gaseosa_coca_sin_azucar',
@@ -1021,7 +1021,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'gaseosa_coca_light',
@@ -1032,7 +1032,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'gaseosa_sprite',
@@ -1043,7 +1043,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'gaseosa_sprite_sin_azucar',
@@ -1054,7 +1054,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'gaseosa_fanta',
@@ -1065,7 +1065,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1624552184280-9e9631bbeee9?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'gaseosa_schweppes',
@@ -1076,7 +1076,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'jugo_aquarius',
@@ -1087,7 +1087,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'jugo_aquarius_gasificada',
@@ -1098,7 +1098,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'agua_con_gas',
@@ -1109,7 +1109,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   },
   {
     id: 'agua_sin_gas',
@@ -1120,7 +1120,7 @@ const BASE_MENU_ITEMS: PizzaItem[] = [
     category: 'bebidas_sin_alcohol',
     hasVariants: true,
     variantType: 'drink',
-    image: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=800'
   }
 ];
 

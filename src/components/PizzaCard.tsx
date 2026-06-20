@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PizzaItem } from '../types/pizza';
 import { Button } from './ui/button';
 import { Plus, Minus, Info } from 'lucide-react';
@@ -45,6 +45,12 @@ export const PizzaCard = ({
     isPizzaVariant ? "Entera" : isDrinkVariant ? "Grande" : "Única"
   );
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
+  const [imageSrc, setImageSrc] = useState(item.image);
+
+  // Sincronizar imagen si el item cambia
+  useEffect(() => {
+    setImageSrc(item.image);
+  }, [item.image]);
 
   const handleAdd = () => {
     if (isAgotado) return;
@@ -63,6 +69,22 @@ export const PizzaCard = ({
     : selectedSize === "Grande" ? quantityGrande
     : quantityUnica;
 
+  // Manejador de fallos de imágenes Unsplash
+  const handleImageError = () => {
+    if (item.category === 'bebidas_sin_alcohol' || item.category === 'cervezas_con_alcohol') {
+      setImageSrc("https://images.unsplash.com/photo-1567696911980-2eed69a46042?w=800");
+    } else if (item.category === 'vinos') {
+      setImageSrc("https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=800");
+    } else if (item.category === 'postres') {
+      setImageSrc("https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800");
+    } else if (item.name.toLowerCase().includes("papa")) {
+      setImageSrc("https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=800");
+    } else {
+      // Default hermosa pizza artesanal
+      setImageSrc("https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800");
+    }
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 15 }}
@@ -76,8 +98,9 @@ export const PizzaCard = ({
     >
       <div className="relative h-24 sm:h-36 md:h-44 overflow-hidden bg-zinc-900">
         <img 
-          src={item.image} 
+          src={imageSrc} 
           alt={item.name} 
+          onError={handleImageError}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
         />
         <div className="absolute top-1.5 right-1.5 sm:top-3 sm:right-3 bg-[#E52321] text-white px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-xs font-black shadow-md tracking-wider">
