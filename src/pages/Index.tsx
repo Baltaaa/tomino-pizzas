@@ -372,7 +372,7 @@ const Index = () => {
                       })}
                     </div>
                   )
-                );
+                )}
               </TabsContent>
             );
           })}
