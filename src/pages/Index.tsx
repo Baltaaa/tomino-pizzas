@@ -16,34 +16,39 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { QRCodeSVG } from 'qrcode.react';
 
+// Secciones del menú mapeadas
+const SECTIONS = [
+  { id: 'entradas', label: 'Entradas' },
+  { id: 'empanadas', label: 'Empanadas' },
+  { id: 'la_gigante', label: 'La Gigante' },
+  { id: 'pizzas', label: 'Nuestras Pizzas' },
+  { id: 'postres', label: 'Postres' },
+  { id: 'vinos', label: 'Vinos' },
+  { id: 'cervezas_con_alcohol', label: 'Con Alcohol' },
+  { id: 'bebidas_sin_alcohol', label: 'Sin Alcohol' }
+];
+
 const Index = () => {
   const { cart, addToCart, updateQuantity, total, itemCount, setCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
-  // Disponibilidad de productos y Precios editables del Admin
   const [menuItems, setMenuItems] = useState<PizzaItem[]>(getMenuItems());
   const [availability, setAvailability] = useState<{[id: string]: boolean}>({});
   
-  // Historial del último pedido
   const [lastOrderCustomerName, setLastOrderCustomerName] = useState('');
   const [hasSavedOrder, setHasSavedOrder] = useState(false);
 
-  // Modal QR del local
   const [isQrOpen, setIsQrOpen] = useState(false);
 
-  // Carga de disponibilidad, precios del panel de admin & Historial
   useEffect(() => {
-    // Recargar items con sus precios reales
     setMenuItems(getMenuItems());
 
-    // Disponibilidad
     const savedAv = localStorage.getItem('tomino_menu_availability');
     if (savedAv) {
       setAvailability(JSON.parse(savedAv));
     }
 
-    // Historial
     const savedName = localStorage.getItem('tomino_last_name');
     const savedItems = localStorage.getItem('tomino_last_items');
     if (savedName && savedItems) {
@@ -65,10 +70,9 @@ const Index = () => {
     }
   };
 
-  // Filtrado dinámico por buscador
   const filteredMenuItems = menuItems.filter(item => 
     item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    item.description.toLowerCase().includes(searchQuery.toLowerCase())
+    (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   return (
@@ -79,7 +83,7 @@ const Index = () => {
         <TominoLogo size="sm" className="scale-90 md:scale-100" />
       </div>
 
-      {/* Hero Poster Layout - Full height on Mobile */}
+      {/* Hero Poster Layout */}
       <header className="relative min-h-screen md:min-h-[85vh] flex items-center justify-center pt-32 pb-12 md:pb-20 overflow-hidden bg-radial-gradient">
         {/* Background Overlay */}
         <div className="absolute inset-0 z-0">
@@ -94,7 +98,7 @@ const Index = () => {
         {/* Content Wrapper */}
         <div className="relative z-10 container mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Side: Mock Phone Poster Frame - Hidden or small on mobile */}
+          {/* Left Side: Mock Phone Poster Frame */}
           <div className="col-span-1 lg:col-span-5 hidden sm:flex justify-center order-2 lg:order-1">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
@@ -113,14 +117,12 @@ const Index = () => {
                   </h3>
                 </div>
 
-                {/* Splat Text Graphic "WOW!" */}
                 <div className="my-auto transform -rotate-6">
                   <h4 className="text-5xl md:text-6xl font-black tracking-tighter text-white uppercase italic stroke-white" style={{ textShadow: '4px 4px 0px #121212' }}>
                     ¡WOW!
                   </h4>
                 </div>
 
-                {/* Elevated Slogan Text */}
                 <div className="text-white font-extrabold tracking-widest text-[10px] z-10 bg-black/30 backdrop-blur-[2px] py-1.5 px-3 rounded-full mx-auto shadow-sm">
                   #SABEMOSDEPIZZAS
                 </div>
@@ -136,7 +138,7 @@ const Index = () => {
             </motion.div>
           </div>
 
-          {/* Right Side: Heavy Bold Slogans & Action - Super compact on Mobile */}
+          {/* Right Side: Heavy Bold Slogans & Action */}
           <div className="col-span-1 lg:col-span-7 space-y-4 md:space-y-6 text-center lg:text-left order-1 lg:order-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -176,7 +178,7 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Historial de Re-compra rápida (Banner localStorage) */}
+      {/* Historial de Re-compra rápida */}
       {hasSavedOrder && (
         <section className="bg-zinc-950 py-4 border-b border-zinc-900">
           <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -194,7 +196,7 @@ const Index = () => {
         </section>
       )}
 
-      {/* Contact & Brand Info Section - Compact Grid */}
+      {/* Contact & Brand Info Section */}
       <section className="bg-[#181818] py-8 md:py-16 border-y border-zinc-800/80">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
           <div className="flex flex-col items-center space-y-2">
@@ -221,7 +223,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Quality Promises / Delivery Info - Compact layout */}
+      {/* Quality Promises / Delivery Info */}
       <section className="py-8 md:py-12 bg-zinc-900/30">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           <div className="flex items-center gap-3 bg-[#1e1e1e]/60 p-4 rounded-xl border border-white/5">
@@ -252,7 +254,7 @@ const Index = () => {
       <main id="menu" className="container mx-auto px-4 py-12 md:py-24">
         <div className="text-center mb-8 space-y-1">
           <span className="text-[10px] md:text-xs tracking-[0.3em] font-extrabold uppercase text-[#E52321]">NUESTRO MENÚ</span>
-          <h2 className="text-2xl md:text-5xl font-black text-white uppercase tracking-tight">PIZZAS EN SERIO</h2>
+          <h2 className="text-2xl md:text-5xl font-black text-white uppercase tracking-tight">CARTA DE TOMINO</h2>
           <div className="h-1 w-16 bg-[#E52321] mx-auto rounded-full"></div>
         </div>
 
@@ -260,7 +262,7 @@ const Index = () => {
         <div className="max-w-md mx-auto mb-10 relative">
           <input
             type="text"
-            placeholder="Buscar por sabor, ingrediente, vino, combo..."
+            placeholder="Buscar por sabor, empanada, postre, cerveza..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-zinc-900 border border-zinc-800 text-white rounded-xl py-3.5 pl-11 pr-4 text-xs focus:outline-none focus:border-[#E52321] focus:ring-1 focus:ring-[#E52321] transition-all"
@@ -268,55 +270,112 @@ const Index = () => {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={16} />
         </div>
 
-        <Tabs defaultValue="Promos" className="w-full">
-          <TabsList className="flex justify-center mb-10 md:mb-16 bg-zinc-900/60 p-1.5 rounded-xl border border-zinc-800 gap-1.5 h-auto flex-wrap max-w-xl mx-auto">
-            {["Promos", "Clásicas", "Especiales", "Bebidas"].map((cat) => (
+        <Tabs defaultValue="entradas" className="w-full">
+          <TabsList className="flex justify-center mb-10 md:mb-16 bg-zinc-900/60 p-1.5 rounded-xl border border-zinc-800 gap-1.5 h-auto flex-wrap max-w-2xl mx-auto">
+            {SECTIONS.map((sec) => (
               <TabsTrigger 
-                key={cat} 
-                value={cat}
-                className="px-4 py-2.5 rounded-lg border-0 data-[state=active]:bg-[#E52321] data-[state=active]:text-white transition-all font-black uppercase text-[10px] md:text-xs tracking-wider"
+                key={sec.id} 
+                value={sec.id}
+                className="px-3.5 py-2.5 rounded-lg border-0 data-[state=active]:bg-[#E52321] data-[state=active]:text-white transition-all font-black uppercase text-[9px] md:text-xs tracking-wider"
               >
-                {cat === 'Bebidas' ? 'Bebidas y Vinos' : cat}
+                {sec.label}
               </TabsTrigger>
             ))}
           </TabsList>
 
-          {["Promos", "Clásicas", "Especiales", "Bebidas"].map((cat) => (
-            <TabsContent key={cat} value={cat}>
-              {filteredMenuItems.filter(item => item.category === cat).length === 0 ? (
-                <div className="text-center text-zinc-500 py-12">
-                  <p className="text-lg font-bold">No se encontraron productos en esta categoría</p>
-                  <p className="text-sm mt-1">Intentá buscando otro sabor o combo.</p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
-                  {filteredMenuItems.filter(item => item.category === cat).map((item) => {
-                    const isAgotado = availability[item.id] === false;
-                    
-                    // Buscar agregados en carrito
-                    const itemEntera = cart.find(c => c.id === `${item.id}-Entera`);
-                    const itemMedia = cart.find(c => c.id === `${item.id}-Media`);
-                    
-                    const qEntera = itemEntera ? itemEntera.quantity : 0;
-                    const qMedia = itemMedia ? itemMedia.quantity : 0;
+          {SECTIONS.map((sec) => {
+            const itemsInCategory = filteredMenuItems.filter(item => item.category === sec.id);
 
-                    return (
-                      <PizzaCard 
-                        key={item.id} 
-                        item={item} 
-                        onAdd={(prod, size) => addToCart(prod, size)} 
-                        quantityEntera={qEntera}
-                        quantityMedia={qMedia}
-                        onUpdateQtyEntera={(delta) => updateQuantity(`${item.id}-Entera`, delta)}
-                        onUpdateQtyMedia={(delta) => updateQuantity(`${item.id}-Media`, delta)}
-                        isAgotado={isAgotado}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </TabsContent>
-          ))}
+            // Agrupar subsecciones si existen (ej. vinos o cervezas)
+            const subcategories = Array.from(new Set(itemsInCategory.map(i => i.subcategory).filter(Boolean))) as string[];
+
+            return (
+              <TabsContent key={sec.id} value={sec.id} className="focus-visible:outline-none focus-visible:ring-0">
+                {itemsInCategory.length === 0 ? (
+                  <div className="text-center text-zinc-500 py-12">
+                    <p className="text-lg font-bold">No se encontraron productos en esta categoría</p>
+                    <p className="text-sm mt-1">Intentá buscando con palabras similares.</p>
+                  </div>
+                ) : (
+                  subcategories.length > 0 ? (
+                    <div className="space-y-12">
+                      {subcategories.map(sub => {
+                        const itemsInSub = itemsInCategory.filter(i => i.subcategory === sub);
+                        return (
+                          <div key={sub} className="space-y-6">
+                            <h3 className="text-lg font-black uppercase tracking-wider text-zinc-400 border-l-4 border-[#E52321] pl-3">
+                              {sub}
+                            </h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
+                              {itemsInSub.map((item) => {
+                                const isAgotado = availability[item.id] === false;
+                                
+                                const itemEntera = cart.find(c => c.id === `${item.id}-Entera`);
+                                const itemMedia = cart.find(c => c.id === `${item.id}-Media`);
+                                const itemChica = cart.find(c => c.id === `${item.id}-Chica`);
+                                const itemGrande = cart.find(c => c.id === `${item.id}-Grande`);
+                                const itemUnica = cart.find(c => c.id === `${item.id}-Única`);
+
+                                return (
+                                  <PizzaCard 
+                                    key={item.id} 
+                                    item={item} 
+                                    onAdd={(prod, size) => addToCart(prod, size)} 
+                                    quantityEntera={itemEntera ? itemEntera.quantity : 0}
+                                    quantityMedia={itemMedia ? itemMedia.quantity : 0}
+                                    quantityChica={itemChica ? itemChica.quantity : 0}
+                                    quantityGrande={itemGrande ? itemGrande.quantity : 0}
+                                    quantityUnica={itemUnica ? itemUnica.quantity : 0}
+                                    onUpdateQtyEntera={(delta) => updateQuantity(`${item.id}-Entera`, delta)}
+                                    onUpdateQtyMedia={(delta) => updateQuantity(`${item.id}-Media`, delta)}
+                                    onUpdateQtyChica={(delta) => updateQuantity(`${item.id}-Chica`, delta)}
+                                    onUpdateQtyGrande={(delta) => updateQuantity(`${item.id}-Grande`, delta)}
+                                    onUpdateQtyUnica={(delta) => updateQuantity(`${item.id}-Única`, delta)}
+                                    isAgotado={isAgotado}
+                                  />
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6">
+                      {itemsInCategory.map((item) => {
+                        const isAgotado = availability[item.id] === false;
+                        
+                        const itemEntera = cart.find(c => c.id === `${item.id}-Entera`);
+                        const itemMedia = cart.find(c => c.id === `${item.id}-Media`);
+                        const itemChica = cart.find(c => c.id === `${item.id}-Chica`);
+                        const itemGrande = cart.find(c => c.id === `${item.id}-Grande`);
+                        const itemUnica = cart.find(c => c.id === `${item.id}-Única`);
+
+                        return (
+                          <PizzaCard 
+                            key={item.id} 
+                            item={item} 
+                            onAdd={(prod, size) => addToCart(prod, size)} 
+                            quantityEntera={itemEntera ? itemEntera.quantity : 0}
+                            quantityMedia={itemMedia ? itemMedia.quantity : 0}
+                            quantityChica={itemChica ? itemChica.quantity : 0}
+                            quantityGrande={itemGrande ? itemGrande.quantity : 0}
+                            quantityUnica={itemUnica ? itemUnica.quantity : 0}
+                            onUpdateQtyEntera={(delta) => updateQuantity(`${item.id}-Entera`, delta)}
+                            onUpdateQtyMedia={(delta) => updateQuantity(`${item.id}-Media`, delta)}
+                            onUpdateQtyChica={(delta) => updateQuantity(`${item.id}-Chica`, delta)}
+                            onUpdateQtyGrande={(delta) => updateQuantity(`${item.id}-Grande`, delta)}
+                            onUpdateQtyUnica={(delta) => updateQuantity(`${item.id}-Única`, delta)}
+                            isAgotado={isAgotado}
+                          />
+                        );
+                      })}
+                    </div>
+                  )
+                );
+              </TabsContent>
+            );
+          })}
         </Tabs>
       </main>
 

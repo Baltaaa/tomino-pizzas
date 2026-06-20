@@ -9,12 +9,25 @@ import { Switch } from '@/components/ui/switch';
 import { getMenuItems, saveCustomPrice, resetAllMenuModifications } from '../utils/menuState';
 import { 
   ShieldAlert, LogOut, CheckCircle, XCircle, RotateCcw, ArrowLeft, 
-  Search, DollarSign, Store, Pizza, TrendingUp, Users, ShoppingBag 
+  Search, DollarSign, Store, Pizza, TrendingUp, ShoppingBag 
 } from 'lucide-react';
 
 interface MenuAvailability {
   [id: string]: boolean;
 }
+
+const CATEGORIES_MAPPED = [
+  { id: 'Todas', label: 'Todas' },
+  { id: 'Promos', label: 'Promos' },
+  { id: 'entradas', label: 'Entradas' },
+  { id: 'empanadas', label: 'Empanadas' },
+  { id: 'la_gigante', label: 'La Gigante' },
+  { id: 'pizzas', label: 'Nuestras Pizzas' },
+  { id: 'postres', label: 'Postres' },
+  { id: 'vinos', label: 'Vinos' },
+  { id: 'cervezas_con_alcohol', label: 'Con Alcohol' },
+  { id: 'bebidas_sin_alcohol', label: 'Sin Alcohol' }
+];
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -23,19 +36,17 @@ const Admin = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('Todas');
   
-  // Estados de catálogo modificable
   const [menuItems, setMenuItems] = useState(getMenuItems());
   const [availability, setAvailability] = useState<MenuAvailability>({});
-  const [editingPrices, setEditingPrices] = useState<{[id: string]: string}>({});
+  
+  // Guardamos las modificaciones en tiempo de edición
+  const [editingPricesMain, setEditingPricesMain] = useState<{[id: string]: string}>({});
+  const [editingPricesHalf, setEditingPricesHalf] = useState<{[id: string]: string}>({});
 
-  // Cocina Abierta / Cerrada global
   const [isKitchenClosed, setIsKitchenClosed] = useState(false);
-
   const navigate = useNavigate();
 
-  // Carga de configuraciones guardadas
   useEffect(() => {
-    // Disponibilidad
     const savedAv = localStorage.getItem('tomino_menu_availability');
     if (savedAv) {
       setAvailability(JSON.parse(savedAv));
@@ -47,7 +58,6 @@ const Admin = () => {
       setAvailability(initial);
     }
 
-    // Estado cocina
     const savedKitchen = localStorage.getItem('tomino_kitchen_closed');
     setIsKitchenClosed(savedKitchen === 'true');
   }, [menuItems]);
@@ -63,7 +73,7 @@ const Admin = () => {
   };
 
   const handleToggleKitchen = (checked: boolean) => {
-    setIsKitchenClosed(!checked); // checked=true -> cocina abierta -> closed=false
+    setIsKitchenClosed(!checked);
     localStorage.setItem('tomino_kitchen_closed', (!checked).toString());
   };
 
@@ -76,15 +86,26 @@ const Admin = () => {
     localStorage.setItem('tomino_menu_availability', JSON.stringify(updated));
   };
 
-  const handlePriceChange = (id: string, val: string) => {
-    setEditingPrices(prev => ({ ...prev, [id]: val }));
+  const handlePriceChangeMain = (id: string, val: string) => {
+    setEditingPricesMain(prev => ({ ...prev, [id]: val }));
+  };
+
+  const handlePriceChangeHalf = (id: string, val: string) => {
+    setEditingPricesHalf(prev => ({ ...prev, [id]: val }));
   };
 
   const handleSavePrice = (id: string) => {
-    const parsedPrice = Math.round(parseFloat(editingPrices[id]));
-    if (!isNaN(parsedPrice) && parsedPrice > 0) {
-      saveCustomPrice(id, parsedPrice);
-      // Recargar menú de utils para reflejar precios en UI
+    const item = menuItems.find(i => i.id === id);
+    if (!item) return;
+
+    const mainVal = editingPricesMain[id] !== undefined ? editingPricesMain[id] : item.price.toString();
+    const halfVal = editingPricesHalf[id] !== undefined ? editingPricesHalf[id] : (item.priceHalf?.toString() || '');
+
+    const parsedPriceMain = Math.round(parseFloat(mainVal));
+    const parsedPriceHalf = halfVal ? Math.round(parseFloat(halfVal)) : undefined;
+
+    if (!isNaN(parsedPriceMain) && parsedPriceMain > 0) {
+      saveCustomPrice(id, parsedPriceMain, parsedPriceHalf);
       setMenuItems(getMenuItems());
     }
   };
@@ -99,13 +120,13 @@ const Admin = () => {
       initial[item.id] = true;
     });
     setAvailability(initial);
-    setEditingPrices({});
+    setEditingPricesMain({});
+    setEditingPricesHalf({});
   };
 
-  // Filtrado de ítems para el dashboard
   const filteredItems = menuItems.filter(item => {
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          item.category.toLowerCase().includes(searchQuery.toLowerCase());
+                          (item.description && item.description.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesCategory = selectedCategory === 'Todas' || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -255,7 +276,7 @@ const Admin = () => {
               <Pizza className="text-amber-500" size={18} />
             </div>
             <div className="space-y-1">
-              <h3 className="text-lg font-extrabold text-white truncate">Muzzarella Clásica</h3>
+              <h3 className="text-lg font-extrabold text-white truncate">Mozzarella Clásica</h3>
               <p className="text-[10px] text-zinc-500">Hoy fue pedida 9 veces.</p>
             </div>
             <span className="text-[10px] text-zinc-400 bg-amber-950/20 px-2 py-1 rounded border border-amber-900/30 self-start">
@@ -269,7 +290,7 @@ const Admin = () => {
         <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 space-y-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-zinc-800 pb-4">
             <h2 className="text-lg font-black uppercase text-white flex items-center gap-2">
-              <Pizza size={20} className="text-[#E52321]" /> Gestor del Menú
+              <Pizza size={20} className="text-[#E52321]" /> Gestor del Menú ({filteredItems.length} ítems)
             </h2>
             
             <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
@@ -291,8 +312,8 @@ const Admin = () => {
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="w-full sm:w-auto bg-zinc-950 border border-zinc-850 text-white text-xs py-2 px-3 rounded-xl focus:outline-none focus:border-[#E52321]"
               >
-                {['Todas', 'Promos', 'Clásicas', 'Especiales', 'Bebidas'].map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
+                {CATEGORIES_MAPPED.map(cat => (
+                  <option key={cat.id} value={cat.id}>{cat.label}</option>
                 ))}
               </select>
             </div>
@@ -301,48 +322,36 @@ const Admin = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredItems.map(item => {
               const isAvailable = availability[item.id] !== false;
-              const currentEditPrice = editingPrices[item.id] !== undefined 
-                ? editingPrices[item.id] 
+              
+              const currentEditPriceMain = editingPricesMain[item.id] !== undefined 
+                ? editingPricesMain[item.id] 
                 : item.price.toString();
+
+              const currentEditPriceHalf = editingPricesHalf[item.id] !== undefined
+                ? editingPricesHalf[item.id]
+                : (item.priceHalf?.toString() || '');
+
+              const isPizzaType = item.hasVariants && item.variantType === 'pizza';
+              const isDrinkType = item.hasVariants && item.variantType === 'drink';
 
               return (
                 <div 
                   key={item.id}
-                  className={`p-4 rounded-2xl border transition-all ${
+                  className={`p-4 rounded-2xl border transition-all flex flex-col gap-3 justify-between ${
                     isAvailable 
                       ? "bg-zinc-950/30 border-zinc-850 hover:border-zinc-800" 
                       : "bg-red-950/10 border-red-950/30"
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-start justify-between gap-4">
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <span className="font-extrabold text-sm text-white truncate block">{item.name}</span>
                         <span className="text-[8px] bg-zinc-800 text-zinc-400 px-1.5 py-0.5 rounded font-black uppercase">{item.category}</span>
                       </div>
-                      
-                      {/* Gestor interactivo de precios directos */}
-                      <div className="flex items-center gap-1.5 mt-2">
-                        <span className="text-[10px] text-zinc-500">Precio:</span>
-                        <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg px-2 py-0.5 max-w-[120px]">
-                          <span className="text-zinc-500 text-xs">$</span>
-                          <input
-                            type="number"
-                            value={currentEditPrice}
-                            onChange={(e) => handlePriceChange(item.id, e.target.value)}
-                            onBlur={() => handleSavePrice(item.id)}
-                            className="bg-transparent border-0 text-white text-xs focus:outline-none w-full pl-1 font-bold"
-                          />
-                        </div>
-                        {editingPrices[item.id] !== undefined && (
-                          <button 
-                            onClick={() => handleSavePrice(item.id)}
-                            className="text-[9px] bg-[#E52321] text-white px-2 py-1 rounded hover:bg-red-700 font-bold"
-                          >
-                            Guardar
-                          </button>
-                        )}
-                      </div>
+                      {item.description && (
+                        <p className="text-[10px] text-zinc-500 mt-1 line-clamp-1">{item.description}</p>
+                      )}
                     </div>
 
                     <button
@@ -367,6 +376,66 @@ const Admin = () => {
                       )}
                     </button>
                   </div>
+
+                  {/* Sección de Edición de Precios directos */}
+                  <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-zinc-900">
+                    {/* Precio Principal */}
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] text-zinc-500 font-bold">
+                        {isPizzaType ? "Entera:" : isDrinkType ? "Gde:" : "Precio:"}
+                      </span>
+                      <div className="flex items-center bg-zinc-900 border border-zinc-850 rounded-lg px-2 py-1 max-w-[100px]">
+                        <span className="text-zinc-500 text-xs">$</span>
+                        <input
+                          type="number"
+                          value={currentEditPriceMain}
+                          onChange={(e) => handlePriceChangeMain(item.id, e.target.value)}
+                          onBlur={() => handleSavePrice(item.id)}
+                          className="bg-transparent border-0 text-white text-xs focus:outline-none w-full pl-1 font-bold"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Precio Secundario si tiene variantes */}
+                    {item.hasVariants && (
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] text-zinc-500 font-bold">
+                          {isPizzaType ? "Media (½):" : "Chica:"}
+                        </span>
+                        <div className="flex items-center bg-zinc-900 border border-zinc-850 rounded-lg px-2 py-1 max-w-[100px]">
+                          <span className="text-zinc-500 text-xs">$</span>
+                          <input
+                            type="number"
+                            value={currentEditPriceHalf}
+                            onChange={(e) => handlePriceChangeHalf(item.id, e.target.value)}
+                            onBlur={() => handleSavePrice(item.id)}
+                            className="bg-transparent border-0 text-white text-xs focus:outline-none w-full pl-1 font-bold"
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Botón de guardado rápido si detectamos cambios */}
+                    {(editingPricesMain[item.id] !== undefined || editingPricesHalf[item.id] !== undefined) && (
+                      <button 
+                        onClick={() => {
+                          handleSavePrice(item.id);
+                          // Limpiar el estado de edición para este ítem una vez guardado
+                          const cleanMain = { ...editingPricesMain };
+                          delete cleanMain[item.id];
+                          setEditingPricesMain(cleanMain);
+                          
+                          const cleanHalf = { ...editingPricesHalf };
+                          delete cleanHalf[item.id];
+                          setEditingPricesHalf(cleanHalf);
+                        }}
+                        className="text-[9px] bg-[#E52321] text-white px-2 py-1.5 rounded hover:bg-red-700 font-bold ml-auto"
+                      >
+                        Guardar
+                      </button>
+                    )}
+                  </div>
+
                 </div>
               );
             })}

@@ -43,7 +43,7 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
   const [orderNotes, setOrderNotes] = useState('');
   const [deliveryNotes, setDeliveryNotes] = useState('');
 
-  // 1. Estimación de tiempo de entrega dinámica
+  // Estimación de tiempo de entrega dinámica
   const [deliveryEstimation, setDeliveryEstimation] = useState({ start: '', end: '' });
   const [timeSlots, setTimeSlots] = useState<string[]>([]);
   const [isKitchenClosed, setIsKitchenClosed] = useState(false);
@@ -78,7 +78,6 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
       const minStart = new Date(now.getTime() + 40 * 60 * 1000);
       let slotRunner = new Date(minStart);
       
-      // Redondear el runner al siguiente múltiplo de 30 minutos para prolijidad
       const rem = slotRunner.getMinutes() % 30;
       if (rem !== 0) {
         slotRunner.setMinutes(slotRunner.getMinutes() + (30 - rem));
@@ -105,7 +104,6 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
     return () => clearInterval(interval);
   }, [selectedTimeSlot]);
 
-  // Cargar datos del último pedido para completar inputs si estuviera disponible
   useEffect(() => {
     const savedName = localStorage.getItem('tomino_last_name');
     if (savedName) {
@@ -113,15 +111,14 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
     }
   }, []);
 
-  // Calcular el vuelto estimado
   const shippingFee = shippingMethod === 'delivery' ? DELIVERY_COST : 0;
   const finalTotal = total + shippingFee;
   const numericCashAmount = parseFloat(cashAmount) || 0;
   const changeDue = numericCashAmount > finalTotal ? numericCashAmount - finalTotal : 0;
 
-  // Contar pizzas para promo (las de tamaño entera o media cuentan igual)
+  // Contar pizzas para promo
   const pizzaCount = items
-    .filter(item => item.category === 'Clásicas' || item.category === 'Especiales')
+    .filter(item => item.category === 'pizzas')
     .reduce((acc, item) => acc + item.quantity, 0);
 
   const isPromoEligible = pizzaCount >= 2;
@@ -131,7 +128,6 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
     
     let message = `*NUEVO PEDIDO - PIZZERÍA TOMINO* 🍕%0A%0A`;
     
-    // Información del cliente
     message += `👤 *Cliente:* ${customerName || 'No especificado'}%0A`;
     message += `🛵 *Método:* ${shippingMethod === 'delivery' ? 'Envío a Domicilio' : 'Retiro por Local (Av. San Martín 459)'}%0A`;
     
@@ -139,7 +135,6 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
       if (customerAddress) {
         message += `📍 *Dirección:* ${customerAddress}%0A`;
       }
-      // Horario de entrega
       if (timePreference === 'antes_posible') {
         message += `🕒 *Entrega:* Lo antes posible (Est. entre ${deliveryEstimation.start} y ${deliveryEstimation.end} hs)%0A`;
       } else {
@@ -147,7 +142,6 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
       }
     }
 
-    // Medio de Pago
     message += `💵 *Método de Pago:* ${paymentMethod === 'efectivo' ? 'Efectivo' : 'Transferencia Bancaria'}%0A`;
     if (paymentMethod === 'efectivo' && numericCashAmount > 0) {
       message += `   - Paga con: $${numericCashAmount}%0A`;
@@ -163,30 +157,26 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
 
     message += `%0A──────────────────%0A`;
 
-    // Ítems detallados
     const itemDetails = items
       .map(i => {
-        const sizeLabel = i.size === "Media" ? "½ (Media)" : "Entera";
+        const sizeLabel = i.size === "Media" ? "½ (Media)" : i.size === "Chica" ? "Chica" : i.size === "Grande" ? "Grande" : "Entera";
         return `• ${i.quantity}x ${i.name} [${sizeLabel}] ($${i.singlePrice * i.quantity})`;
       })
       .join('%0A');
     message += itemDetails;
     
-    // Regalo de la promo
     if (isPromoEligible) {
       message += `%0A%0A🎁 *PROMO ACTIVADA (Llevando 2 te llevas media GRATIS):*%0A• 1x ${selectedFreeHalf} ($0 - GRATIS!)`;
     }
 
     message += `%0A──────────────────%0A`;
     
-    // Precios
     message += `*Subtotal:* $${total}%0A`;
     if (shippingMethod === 'delivery') {
       message += `*Costo de Envío:* $${DELIVERY_COST}%0A`;
     }
     message += `💰 *TOTAL FINAL: $${finalTotal}*%0A%0A_Por favor, confírmame el pedido para comenzar la preparación._`;
     
-    // Guardar en localStorage para re-compra rápida
     localStorage.setItem('tomino_last_name', customerName);
     localStorage.setItem('tomino_last_shipping', shippingMethod);
     localStorage.setItem('tomino_last_items', JSON.stringify(items));
@@ -222,8 +212,8 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
                     <div className="flex-1 min-w-0">
                       <div className="flex items-baseline gap-1.5">
                         <h4 className="font-bold text-white text-sm truncate">{item.name}</h4>
-                        {item.size === "Media" && (
-                          <span className="text-[10px] bg-red-950 text-[#E52321] font-black px-1 py-0.5 rounded uppercase">½</span>
+                        {item.size !== "Única" && (
+                          <span className="text-[9px] bg-red-950 text-[#E52321] font-black px-1.5 py-0.5 rounded uppercase">{item.size}</span>
                         )}
                       </div>
                       <p className="text-xs text-[#E52321] font-bold mt-0.5">${item.singlePrice} c/u</p>
@@ -289,7 +279,7 @@ export const CartDrawer = ({ open, onOpenChange, items, onUpdateQty, total }: Pr
                   </div>
                 </div>
               ) : (
-                items.some(i => i.category === 'Clásicas' || i.category === 'Especiales') && (
+                items.some(i => i.category === 'pizzas') && (
                   <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4 flex items-center gap-3">
                     <Gift className="text-zinc-500 shrink-0" size={18} />
                     <p className="text-xs text-zinc-400">

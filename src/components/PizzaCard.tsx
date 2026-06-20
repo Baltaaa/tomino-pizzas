@@ -8,11 +8,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 interface Props {
   item: PizzaItem;
-  onAdd: (item: PizzaItem, size: "Entera" | "Media") => void;
+  onAdd: (item: PizzaItem, size: "Entera" | "Media" | "Chica" | "Grande" | "Única") => void;
   quantityEntera?: number;
   quantityMedia?: number;
+  quantityChica?: number;
+  quantityGrande?: number;
+  quantityUnica?: number;
   onUpdateQtyEntera?: (delta: number) => void;
   onUpdateQtyMedia?: (delta: number) => void;
+  onUpdateQtyChica?: (delta: number) => void;
+  onUpdateQtyGrande?: (delta: number) => void;
+  onUpdateQtyUnica?: (delta: number) => void;
   isAgotado?: boolean;
 }
 
@@ -21,20 +27,41 @@ export const PizzaCard = ({
   onAdd, 
   quantityEntera = 0, 
   quantityMedia = 0, 
-  onUpdateQtyEntera, 
+  quantityChica = 0, 
+  quantityGrande = 0, 
+  quantityUnica = 0,
+  onUpdateQtyEntera,
   onUpdateQtyMedia,
+  onUpdateQtyChica,
+  onUpdateQtyGrande,
+  onUpdateQtyUnica,
   isAgotado = false
 }: Props) => {
-  const [selectedSize, setSelectedSize] = useState<"Entera" | "Media">("Entera");
-  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-  const canHaveSize = item.category === "Clásicas" || item.category === "Especiales";
+  const isPizzaVariant = item.hasVariants && item.variantType === 'pizza';
+  const isDrinkVariant = item.hasVariants && item.variantType === 'drink';
+  const hasVariants = item.hasVariants === true;
 
-  const totalQuantity = quantityEntera + quantityMedia;
+  const [selectedSize, setSelectedSize] = useState<"Entera" | "Media" | "Chica" | "Grande" | "Única">(
+    isPizzaVariant ? "Entera" : isDrinkVariant ? "Grande" : "Única"
+  );
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   const handleAdd = () => {
     if (isAgotado) return;
-    onAdd(item, canHaveSize ? selectedSize : "Entera");
+    onAdd(item, selectedSize);
   };
+
+  // Determinar precio de previsualización según selección actual
+  const currentPrice = (hasVariants && (selectedSize === "Media" || selectedSize === "Chica") && item.priceHalf !== undefined)
+    ? item.priceHalf 
+    : item.price;
+
+  // Obtener cantidad según la variante seleccionada
+  const activeQuantity = selectedSize === "Entera" ? quantityEntera
+    : selectedSize === "Media" ? quantityMedia
+    : selectedSize === "Chica" ? quantityChica
+    : selectedSize === "Grande" ? quantityGrande
+    : quantityUnica;
 
   return (
     <motion.div 
@@ -54,7 +81,7 @@ export const PizzaCard = ({
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100"
         />
         <div className="absolute top-1.5 right-1.5 sm:top-3 sm:right-3 bg-[#E52321] text-white px-1.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-xs font-black shadow-md tracking-wider">
-          {canHaveSize && selectedSize === "Media" ? `$${Math.round(item.price / 2)}` : `$${item.price}`}
+          ${currentPrice}
         </div>
 
         {isAgotado && (
@@ -65,9 +92,9 @@ export const PizzaCard = ({
           </div>
         )}
 
-        {item.category === 'Especiales' && !isAgotado && (
+        {item.category === 'la_gigante' && !isAgotado && (
           <div className="absolute top-1.5 left-1.5 sm:top-3 sm:left-3 bg-amber-500 text-black px-1.5 py-0.5 rounded-full text-[8px] sm:text-[10px] font-black tracking-widest uppercase">
-            Especial
+            La Gigante
           </div>
         )}
         {item.category === 'Promos' && !isAgotado && (
@@ -83,32 +110,33 @@ export const PizzaCard = ({
             {item.name}
           </h3>
           
-          {/* Descripción: En desktop se muestra completa; en mobile se puede expandir al pulsarla */}
-          <div 
-            onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
-            className="cursor-pointer sm:cursor-default mt-1 relative group/desc"
-            title="Toca para expandir"
-          >
-            <p className={`text-zinc-400 text-[10px] sm:text-xs leading-tight transition-all duration-300 ${
-              isDescriptionExpanded ? "" : "line-clamp-2 sm:line-clamp-none"
-            }`}>
-              {item.description}
-            </p>
-            {!isDescriptionExpanded && item.description.length > 45 && (
-              <span className="text-[8px] text-red-500 font-bold block sm:hidden mt-0.5 hover:underline flex items-center gap-0.5 select-none">
-                <Info size={10} /> Ver todo
-              </span>
-            )}
-            {isDescriptionExpanded && (
-              <span className="text-[8px] text-zinc-500 font-bold block sm:hidden mt-0.5 select-none">
-                Ver menos
-              </span>
-            )}
-          </div>
+          {item.description && (
+            <div 
+              onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+              className="cursor-pointer sm:cursor-default mt-1 relative group/desc"
+              title="Toca para expandir"
+            >
+              <p className={`text-zinc-400 text-[10px] sm:text-xs leading-tight transition-all duration-300 ${
+                isDescriptionExpanded ? "" : "line-clamp-2 sm:line-clamp-none"
+              }`}>
+                {item.description}
+              </p>
+              {!isDescriptionExpanded && item.description.length > 45 && (
+                <span className="text-[8px] text-red-500 font-bold block sm:hidden mt-0.5 hover:underline flex items-center gap-0.5 select-none">
+                  <Info size={10} /> Ver todo
+                </span>
+              )}
+              {isDescriptionExpanded && (
+                <span className="text-[8px] text-zinc-500 font-bold block sm:hidden mt-0.5 select-none">
+                  Ver menos
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Entera / Media selector */}
-        {canHaveSize && !isAgotado && (
+        {/* Selectores de variantes de tamaños (Pizzas y Gaseosas) */}
+        {!isAgotado && isPizzaVariant && (
           <div className="grid grid-cols-2 gap-1 bg-zinc-900 p-0.5 rounded-md">
             <button
               onClick={() => setSelectedSize("Entera")}
@@ -133,6 +161,31 @@ export const PizzaCard = ({
           </div>
         )}
 
+        {!isAgotado && isDrinkVariant && (
+          <div className="grid grid-cols-2 gap-1 bg-zinc-900 p-0.5 rounded-md">
+            <button
+              onClick={() => setSelectedSize("Grande")}
+              className={`text-[8px] sm:text-[10px] py-1 rounded font-bold transition-all ${
+                selectedSize === "Grande" 
+                  ? "bg-[#E52321] text-white shadow-sm" 
+                  : "text-zinc-400 hover:text-white"
+              }`}
+            >
+              Grande (1.5L)
+            </button>
+            <button
+              onClick={() => setSelectedSize("Chica")}
+              className={`text-[8px] sm:text-[10px] py-1 rounded font-bold transition-all ${
+                selectedSize === "Chica" 
+                  ? "bg-[#E52321] text-white shadow-sm" 
+                  : "text-zinc-400 hover:text-white"
+              }`}
+            >
+              Chica (500cc)
+            </button>
+          </div>
+        )}
+
         <div className="min-h-[30px] sm:min-h-[36px] mt-1">
           <AnimatePresence mode="wait">
             {isAgotado ? (
@@ -143,7 +196,7 @@ export const PizzaCard = ({
                 No Disp.
               </Button>
             ) : (
-              (selectedSize === "Entera" && quantityEntera > 0) || (selectedSize === "Media" && quantityMedia > 0) || (!canHaveSize && totalQuantity > 0) ? (
+              activeQuantity > 0 ? (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -152,13 +205,11 @@ export const PizzaCard = ({
                 >
                   <Button
                     onClick={() => {
-                      if (!canHaveSize) {
-                        onUpdateQtyEntera?.(-1);
-                      } else if (selectedSize === "Entera") {
-                        onUpdateQtyEntera?.(-1);
-                      } else {
-                        onUpdateQtyMedia?.(-1);
-                      }
+                      if (selectedSize === "Entera" && onUpdateQtyEntera) onUpdateQtyEntera(-1);
+                      else if (selectedSize === "Media" && onUpdateQtyMedia) onUpdateQtyMedia(-1);
+                      else if (selectedSize === "Chica" && onUpdateQtyChica) onUpdateQtyChica(-1);
+                      else if (selectedSize === "Grande" && onUpdateQtyGrande) onUpdateQtyGrande(-1);
+                      else if (selectedSize === "Única" && onUpdateQtyUnica) onUpdateQtyUnica(-1);
                     }}
                     size="icon"
                     className="bg-zinc-700 hover:bg-zinc-600 text-white rounded-md h-6 w-6 sm:h-8 sm:w-8 transition-colors"
@@ -167,18 +218,20 @@ export const PizzaCard = ({
                   </Button>
                   
                   <span className="font-extrabold text-[9px] sm:text-xs text-white select-none text-center flex-1">
-                    {!canHaveSize ? `${totalQuantity}` : selectedSize === "Entera" ? `${quantityEntera} Ent.` : `${quantityMedia} Med.`}
+                    {selectedSize === "Entera" ? `${quantityEntera} Ent.` 
+                     : selectedSize === "Media" ? `${quantityMedia} Med.`
+                     : selectedSize === "Grande" ? `${quantityGrande} Gde.`
+                     : selectedSize === "Chica" ? `${quantityChica} Ch.`
+                     : `${quantityUnica}`}
                   </span>
                   
                   <Button
                     onClick={() => {
-                      if (!canHaveSize) {
-                        onUpdateQtyEntera?.(1);
-                      } else if (selectedSize === "Entera") {
-                        onUpdateQtyEntera?.(1);
-                      } else {
-                        onUpdateQtyMedia?.(1);
-                      }
+                      if (selectedSize === "Entera" && onUpdateQtyEntera) onUpdateQtyEntera(1);
+                      else if (selectedSize === "Media" && onUpdateQtyMedia) onUpdateQtyMedia(1);
+                      else if (selectedSize === "Chica" && onUpdateQtyChica) onUpdateQtyChica(1);
+                      else if (selectedSize === "Grande" && onUpdateQtyGrande) onUpdateQtyGrande(1);
+                      else if (selectedSize === "Única" && onUpdateQtyUnica) onUpdateQtyUnica(1);
                     }}
                     size="icon"
                     className="bg-[#E52321] hover:bg-red-700 text-white rounded-md h-6 w-6 sm:h-8 sm:w-8 transition-colors"
@@ -197,7 +250,7 @@ export const PizzaCard = ({
                     className="w-full bg-[#E52321] hover:bg-red-700 text-white rounded-lg py-2 h-auto flex items-center justify-center gap-1 font-bold uppercase text-[8px] sm:text-[10px]"
                   >
                     <Plus size={10} />
-                    Agregar {canHaveSize && selectedSize === "Media" ? "½" : ""}
+                    Agregar {selectedSize === "Media" ? "½" : selectedSize === "Chica" ? "Chica" : ""}
                   </Button>
                 </motion.div>
               )
