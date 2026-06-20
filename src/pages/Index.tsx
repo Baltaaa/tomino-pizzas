@@ -16,8 +16,9 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { QRCodeSVG } from 'qrcode.react';
 
-// Secciones del menú mapeadas
+// Secciones del menú mapeadas (Incluyendo Promos al inicio)
 const SECTIONS = [
+  { id: 'Promos', label: 'Promos' },
   { id: 'entradas', label: 'Entradas' },
   { id: 'empanadas', label: 'Empanadas' },
   { id: 'la_gigante', label: 'La Gigante' },
@@ -270,7 +271,7 @@ const Index = () => {
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500" size={16} />
         </div>
 
-        <Tabs defaultValue="entradas" className="w-full">
+        <Tabs defaultValue="Promos" className="w-full">
           <TabsList className="flex justify-center mb-10 md:mb-16 bg-zinc-900/60 p-1.5 rounded-xl border border-zinc-800 gap-1.5 h-auto flex-wrap max-w-2xl mx-auto">
             {SECTIONS.map((sec) => (
               <TabsTrigger 
